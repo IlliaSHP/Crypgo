@@ -37,7 +37,11 @@ let bodyLock = (delay = 500) => {
     }, delay);
   }
 };
+function uniqArray(array) {
+  return array.filter((item, index, self) => self.indexOf(item) === index);
+}
 export {
   bodyLockStatus as a,
-  bodyLockToggle as b
+  bodyLockToggle as b,
+  uniqArray as u
 };

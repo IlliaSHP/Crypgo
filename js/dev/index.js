@@ -1,4 +1,4 @@
-import { b as bodyLockToggle, a as bodyLockStatus } from "./common.min.js";
+import { b as bodyLockToggle, a as bodyLockStatus, u as uniqArray } from "./common.min.js";
 (function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) return;
@@ -28,6 +28,103 @@ import { b as bodyLockToggle, a as bodyLockStatus } from "./common.min.js";
     fetch(link.href, fetchOpts);
   }
 })();
+const animationDuration = 2500;
+const pauseBetweenLines = 2500;
+const initialDelay = 1e3;
+const circleAnimationDuration = 2500;
+const decorElement = document.querySelector(".decor-statistic-features");
+const lines = decorElement?.querySelectorAll(".decor-line");
+const circles = decorElement?.querySelectorAll(".decor-circle");
+let currentLineIndex = 0;
+let isAnimating = false;
+let animationTimeout = null;
+function log(message, data = null) {
+  const timestamp = (/* @__PURE__ */ new Date()).toLocaleTimeString();
+  console.log(`[${timestamp}] 🎬 ANIMATION: ${message}`, data ? data : "");
+}
+function resetAnimation(element) {
+  if (element) {
+    element.style.animation = "none";
+    void element.offsetWidth;
+  }
+}
+function animateLine(index) {
+  if (!lines || index >= lines.length) {
+    return;
+  }
+  const line = lines[index];
+  const path = line.querySelector("path:nth-of-type(1)");
+  const circle = circles ? circles[index % circles.length] : null;
+  if (!path) {
+    return;
+  }
+  isAnimating = true;
+  path.style.animation = `drawLine ${animationDuration / 1e3}s linear forwards`;
+  if (circle) {
+    circle.style.animation = `drawCircle ${circleAnimationDuration / 1e3}s ease-in-out forwards`;
+  }
+  animationTimeout = setTimeout(() => {
+    resetAnimation(path);
+    if (circle) {
+      resetAnimation(circle);
+    }
+    currentLineIndex = (currentLineIndex + 1) % lines.length;
+    animationTimeout = setTimeout(() => {
+      animateLine(currentLineIndex);
+    }, pauseBetweenLines);
+  }, animationDuration);
+}
+function initializeAnimationObserver() {
+  const watcherContainer = document.querySelector(".features__container[data-fls-watcher]");
+  if (!watcherContainer) {
+    return;
+  }
+  if (!decorElement) {
+    return;
+  }
+  if (!lines || lines.length === 0) {
+    return;
+  }
+  if (!circles || circles.length === 0) ;
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === "attributes" && mutation.attributeName === "class") {
+        if (watcherContainer.classList.contains("--watcher-view")) {
+          if (!isAnimating) {
+            currentLineIndex = 0;
+            animationTimeout = setTimeout(() => {
+              animateLine(currentLineIndex);
+            }, initialDelay);
+          } else {
+            log("---");
+          }
+        } else {
+          log("---");
+        }
+      }
+    });
+  });
+  observer.observe(watcherContainer, {
+    attributes: true,
+    attributeFilter: ["class"]
+  });
+  if (watcherContainer.classList.contains("--watcher-view")) {
+    if (!isAnimating) {
+      currentLineIndex = 0;
+      animationTimeout = setTimeout(() => {
+        animateLine(currentLineIndex);
+      }, initialDelay);
+    }
+  }
+}
+document.addEventListener("DOMContentLoaded", () => {
+  initializeAnimationObserver();
+});
+window.addEventListener("beforeunload", () => {
+  if (animationTimeout) {
+    clearTimeout(animationTimeout);
+  }
+});
 function menuInit() {
   document.addEventListener("click", function(e) {
     if (bodyLockStatus && e.target.closest("[data-fls-menu]")) {
@@ -133,6 +230,124 @@ function headerScroll() {
   });
 }
 document.querySelector("[data-fls-header-scroll]") ? window.addEventListener("load", headerScroll) : null;
+class ScrollWatcher {
+  constructor(props) {
+    let defaultConfig = {
+      logging: true
+    };
+    this.config = Object.assign(defaultConfig, props);
+    this.observer;
+    !document.documentElement.hasAttribute("data-fls-watch") ? this.scrollWatcherRun() : null;
+  }
+  // Оновлюємо конструктор
+  scrollWatcherUpdate() {
+    this.scrollWatcherRun();
+  }
+  // Запускаємо конструктор
+  scrollWatcherRun() {
+    document.documentElement.setAttribute("data-fls-watch", "");
+    this.scrollWatcherConstructor(document.querySelectorAll("[data-fls-watcher]"));
+  }
+  // Конструктор спостерігачів
+  scrollWatcherConstructor(items) {
+    if (items.length) {
+      let uniqParams = uniqArray(Array.from(items).map(function(item) {
+        if (item.dataset.flsWatcher === "navigator" && !item.dataset.flsWatcherThreshold) {
+          let valueOfThreshold;
+          if (item.clientHeight > 2) {
+            valueOfThreshold = window.innerHeight / 2 / (item.clientHeight - 1);
+            if (valueOfThreshold > 1) {
+              valueOfThreshold = 1;
+            }
+          } else {
+            valueOfThreshold = 1;
+          }
+          item.setAttribute(
+            "data-fls-watcher-threshold",
+            valueOfThreshold.toFixed(2)
+          );
+        }
+        return `${item.dataset.flsWatcherRoot ? item.dataset.flsWatcherRoot : null}|${item.dataset.flsWatcherMargin ? item.dataset.flsWatcherMargin : "0px"}|${item.dataset.flsWatcherThreshold ? item.dataset.flsWatcherThreshold : 0}`;
+      }));
+      uniqParams.forEach((uniqParam) => {
+        let uniqParamArray = uniqParam.split("|");
+        let paramsWatch = {
+          root: uniqParamArray[0],
+          margin: uniqParamArray[1],
+          threshold: uniqParamArray[2]
+        };
+        let groupItems = Array.from(items).filter(function(item) {
+          let watchRoot = item.dataset.flsWatcherRoot ? item.dataset.flsWatcherRoot : null;
+          let watchMargin = item.dataset.flsWatcherMargin ? item.dataset.flsWatcherMargin : "0px";
+          let watchThreshold = item.dataset.flsWatcherThreshold ? item.dataset.flsWatcherThreshold : 0;
+          if (String(watchRoot) === paramsWatch.root && String(watchMargin) === paramsWatch.margin && String(watchThreshold) === paramsWatch.threshold) {
+            return item;
+          }
+        });
+        let configWatcher = this.getScrollWatcherConfig(paramsWatch);
+        this.scrollWatcherInit(groupItems, configWatcher);
+      });
+    }
+  }
+  // Функція створення налаштувань
+  getScrollWatcherConfig(paramsWatch) {
+    let configWatcher = {};
+    if (document.querySelector(paramsWatch.root)) {
+      configWatcher.root = document.querySelector(paramsWatch.root);
+    } else if (paramsWatch.root !== "null") ;
+    configWatcher.rootMargin = paramsWatch.margin;
+    if (paramsWatch.margin.indexOf("px") < 0 && paramsWatch.margin.indexOf("%") < 0) {
+      return;
+    }
+    if (paramsWatch.threshold === "prx") {
+      paramsWatch.threshold = [];
+      for (let i = 0; i <= 1; i += 5e-3) {
+        paramsWatch.threshold.push(i);
+      }
+    } else {
+      paramsWatch.threshold = paramsWatch.threshold.split(",");
+    }
+    configWatcher.threshold = paramsWatch.threshold;
+    return configWatcher;
+  }
+  // Функція створення нового спостерігача зі своїми налаштуваннями
+  scrollWatcherCreate(configWatcher) {
+    this.observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        this.scrollWatcherCallback(entry, observer);
+      });
+    }, configWatcher);
+  }
+  // Функція ініціалізації спостерігача зі своїми налаштуваннями
+  scrollWatcherInit(items, configWatcher) {
+    this.scrollWatcherCreate(configWatcher);
+    items.forEach((item) => this.observer.observe(item));
+  }
+  // Функція обробки базових дій точок спрацьовування
+  scrollWatcherIntersecting(entry, targetElement) {
+    if (entry.isIntersecting) {
+      !targetElement.classList.contains("--watcher-view") ? targetElement.classList.add("--watcher-view") : null;
+    } else {
+      targetElement.classList.contains("--watcher-view") ? targetElement.classList.remove("--watcher-view") : null;
+    }
+  }
+  // Функція відключення стеження за об'єктом
+  scrollWatcherOff(targetElement, observer) {
+    observer.unobserve(targetElement);
+  }
+  // Функція обробки спостереження
+  scrollWatcherCallback(entry, observer) {
+    const targetElement = entry.target;
+    this.scrollWatcherIntersecting(entry, targetElement);
+    targetElement.hasAttribute("data-fls-watcher-once") && entry.isIntersecting ? this.scrollWatcherOff(targetElement, observer) : null;
+    document.dispatchEvent(new CustomEvent("watcherCallback", {
+      detail: {
+        entry
+      }
+    }));
+  }
+}
+document.querySelector("[data-fls-watcher]") ? window.addEventListener("load", () => new ScrollWatcher({})) : null;
 class Parallax {
   constructor(elements) {
     if (elements.length) {
