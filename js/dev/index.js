@@ -630,6 +630,37 @@ const math = {
     return (1 - n) * a + n * b;
   }
 };
+const CURSOR_SETTINGS = {
+  shadowSizeMultiplier: 1.4,
+  // Множник розміру при 100% магнетизмі (1.4 = 140%)
+  shadowSizeEase: 0.25,
+  // Швидкість розтягування тіні (0.1-0.3)
+  // ДЕФОРМАЦІЯ ТІНІ
+  magnetShadowDeformation: 3,
+  // Як сильно стискається тінь при магнетизмі (2-6)
+  minShadowScale: 0.6,
+  // НОВИЙ: Мінімальний масштаб при вході (0.4-0.8)
+  // Приклад: при вході в зону мінімальна висота буде 60% від повної
+  // РУХЛИВІСТЬ ТІНІ
+  shadowEase: 0.1,
+  // Швидкість руху тіні до елемента (0.15-0.35)
+  shadowMoveEase: 0.15,
+  // Швидкість базового руху за мишею (0.05-0.3)
+  // МАГНЕТИЗМ ТІНІ
+  shadowMagnetStrength: 0.01
+  // Як сильно тінь тягнеться до елемента (0.01-0.2)
+};
+const MAGNET_SETTINGS = {
+  distance: 100,
+  // Радіус зони магнетизму (50-150)
+  hysteresis: 20,
+  // Гістерезис "мертвої зони" (10-40)
+  // МАГНЕТИЗМ ЕЛЕМЕНТА
+  elementMagnetStrength: 0.5,
+  // Як сильно елемент рухається до курсору (0.3-1.0)
+  elementEase: 0.1
+  // Швидкість руху елемента (0.1-0.3)
+};
 function customCursor() {
   const wrapper = document.querySelector("[data-fls-cursor]");
   const isShadowWrapper = document.querySelector("[data-fls-cursor-shadow]");
@@ -735,8 +766,18 @@ function customCursor() {
           const distance = Math.sqrt(distX * distX + distY * distY);
           if (distance > 0) {
             const strength = Math.max(0, 1 - distance / magnetData.distance);
-            targetShadowWidth = math.lerp(cursorShadowStyle.width, magnetData.targetBounds.width * magnetData.shadowSizeMultiplier, strength);
-            targetShadowHeight = math.lerp(cursorShadowStyle.height, magnetData.targetBounds.height * magnetData.shadowSizeMultiplier, strength);
+            const minScale = CURSOR_SETTINGS.minShadowScale;
+            const adjustedStrength = minScale + strength * (1 - minScale);
+            targetShadowWidth = math.lerp(
+              cursorShadowStyle.width,
+              magnetData.targetBounds.width * CURSOR_SETTINGS.shadowSizeMultiplier,
+              adjustedStrength
+            );
+            targetShadowHeight = math.lerp(
+              cursorShadowStyle.height,
+              magnetData.targetBounds.height * CURSOR_SETTINGS.shadowSizeMultiplier,
+              adjustedStrength
+            );
             const elementX = actualElementCenterX - targetShadowWidth / 2;
             const elementY = actualElementCenterY - targetShadowHeight / 2;
             const cursorPullX = (shadowData.mouse.x - actualElementCenterX) * strength * magnetData.shadowMagnetStrength * 0.8;
@@ -744,14 +785,14 @@ function customCursor() {
             targetX = elementX + targetShadowWidth / 2 + cursorPullX;
             targetY = elementY + targetShadowHeight / 2 + cursorPullY;
           } else {
-            targetShadowWidth = magnetData.targetBounds.width * magnetData.shadowSizeMultiplier;
-            targetShadowHeight = magnetData.targetBounds.height * magnetData.shadowSizeMultiplier;
+            targetShadowWidth = magnetData.targetBounds.width * CURSOR_SETTINGS.shadowSizeMultiplier;
+            targetShadowHeight = magnetData.targetBounds.height * CURSOR_SETTINGS.shadowSizeMultiplier;
             targetX = actualElementCenterX;
             targetY = actualElementCenterY;
           }
           cursorShadow.classList.add("--magnate-active");
           const magnetStrength = Math.max(0, 1 - distance / magnetData.distance);
-          shadowData.fx.magnetScale = 1 - magnetStrength * magnetData.magnetShadowDeformation / 10;
+          shadowData.fx.magnetScale = 1 - magnetStrength * CURSOR_SETTINGS.magnetShadowDeformation / 10;
         } else {
           targetShadowWidth = cursorShadowStyle.width;
           targetShadowHeight = cursorShadowStyle.height;
@@ -793,8 +834,8 @@ function customCursor() {
           const distance = Math.sqrt(distX * distX + distY * distY);
           if (distance > 0 && distance < magnetData.distance) {
             const strength = 1 - distance / magnetData.distance;
-            motion.target.x = distX * strength * magnetData.elementMagnetStrength * 0.5;
-            motion.target.y = distY * strength * magnetData.elementMagnetStrength * 0.5;
+            motion.target.x = distX * strength * magnetData.elementMagnetStrength * 0.8;
+            motion.target.y = distY * strength * magnetData.elementMagnetStrength * 0.8;
             motion.absoluteX = elementCenterX + motion.target.x;
             motion.absoluteY = elementCenterY + motion.target.y;
           } else {
@@ -849,7 +890,7 @@ function customCursor() {
           x: 0,
           y: 0
         },
-        // Поточна позиція тіні (интерпольована позиція)
+        // Поточна позиція тіні (інтерпольована позиція)
         current: {
           x: 0,
           y: 0
@@ -859,18 +900,15 @@ function customCursor() {
           x: 0,
           y: 0
         },
-        // Швидкість інтерполяції тіні (0.15 = 15% до цільової позиції за кадр)
-        // Чим менше - тим повільніше рухається тінь
-        // Діапазон: 0.05 (повільно) - 0.3 (швидко)
-        ease: 0.15,
+        // Швидкість інтерполяції тіні
+        ease: CURSOR_SETTINGS.shadowMoveEase,
         // Розмір тіні (оновлюється при магнетизмі елемента)
-        targetWidth: cursorShadow.offsetWidth,
-        targetHeight: cursorShadow.offsetHeight,
-        currentWidth: cursorShadow.offsetWidth,
-        currentHeight: cursorShadow.offsetHeight,
+        targetWidth: cursorShadowStyle.width,
+        targetHeight: cursorShadowStyle.height,
+        currentWidth: cursorShadowStyle.width,
+        currentHeight: cursorShadowStyle.height,
         // Швидкість зміни розміру тіні
-        // Діапазон: 0.1 - 0.3
-        sizeEase: 0.18,
+        sizeEase: CURSOR_SETTINGS.shadowSizeEase,
         // Ефекти (деформація тіні при русі)
         fx: {
           diffX: 0,
@@ -880,11 +918,10 @@ function customCursor() {
           veloX: 0,
           veloY: 0,
           scale: 1,
-          // НОВИЙ ПАРАМЕТР: окремий масштаб для магнетичної зони
+          // Окремий масштаб для магнетичної зони
           magnetScale: 1
         },
-        // === ПОЗИЦІОНУВАННЯ ТІНІ ===
-        // Поточна позиція тіні (x, y) - обчислюється залежно від магнетизму
+        // Позиціонування тіні
         posX: 0,
         posY: 0
       };
@@ -893,46 +930,12 @@ function customCursor() {
       target: null,
       targetBounds: null,
       isActive: false,
-      // Радіус зони магнетизму в пікселях
-      // Чим більше - тим далі курсор "притягує" елемент
-      // Діапазон: 50-150
-      distance: 100,
-      // Гістерезис - "мертва зона" для стабільності
-      // Коли елемент активний, потрібна більша відстань щоб його деактивувати
-      // Запобігає вздрагуванню на межах
-      // Діапазон: 10-40
-      hysteresis: 20,
-      // === СИЛА МАГНЕТИЗМУ ЕЛЕМЕНТА ===
-      // Чим більше число - тим сильніше елемент рухається до курсору
-      elementMagnetStrength: 0.65,
-      // === СИЛА МАГНЕТИЗМУ ТІНІ КУРСОРУ ===
-      // Як сильно тінь рухається під час магнетизму
-      // Діапазон: 0.3-1.0
-      shadowMagnetStrength: 0.05,
-      // === ШВИДКІСТЬ РУХУ ЕЛЕМЕНТА ===
-      // Чим менше число - тим повільніше елемент рухається
-      // Чим більше - тим швидше
-      // Діапазон: 0.1 (дуже повільно) - 0.3 (швидко)
-      // 0.18 - добра середина для плавних рухів
-      elementEase: 0.18,
-      // === ШВИДКІСТЬ РУХУ ТІНІ КУРСОРУ ===
-      // Контролює як швидко тінь "наздоганяє" елемент
-      // Більше значення = тінь швидше рухається
-      // Діапазон: 0.15-0.35
-      // ЗБІЛЬШТЕ ЦЕ якщо тінь відстає від елемента
-      shadowEase: 0.25,
-      // === ДЕФОРМАЦІЯ ТІНІ В МАГНЕТИЧНІЙ ЗОНІ ===
-      // Контролює як сильно деформується тінь при магнетизмі
-      // Чим більше число - тим більше деформується
-      // Діапазон: 2 - 6
-      magnetShadowDeformation: 3,
-      // === МАСШТАБУВАННЯ ТІНІ В МАГНЕТИЧНІЙ ЗОНІ ===
-      // Це значення визначає розмір тіні відносно елемента магнетизму при максимальному привласненні
-      // 1.0 = точно розмір елемента
-      // 1.1 = на 10% більше (110%)
-      // 1.2 = на 20% більше (120%)
-      // Діапазон: 0.9 - 1.3
-      shadowSizeMultiplier: 1
+      distance: MAGNET_SETTINGS.distance,
+      hysteresis: MAGNET_SETTINGS.hysteresis,
+      elementMagnetStrength: MAGNET_SETTINGS.elementMagnetStrength,
+      shadowMagnetStrength: CURSOR_SETTINGS.shadowMagnetStrength,
+      elementEase: MAGNET_SETTINGS.elementEase,
+      shadowEase: CURSOR_SETTINGS.shadowEase
     };
     const elementMotionMap = /* @__PURE__ */ new WeakMap();
     targetWrapper.addEventListener("mouseup", mouseActions);
@@ -951,24 +954,47 @@ function customCursor() {
 }
 document.querySelector("[data-fls-cursor]") || document.querySelector("[data-fls-cursor-shadow]") ? window.addEventListener("load", customCursor) : null;
 const magicalBorders = document.querySelectorAll("[data-card-borders]");
+let activeCard = null;
 let rafId;
 function handleMouseMove(event) {
   const mouseX = event.clientX;
   const mouseY = event.clientY;
+  const target = event.target.closest(".card-borders-item");
+  if (!target) {
+    if (activeCard) {
+      activeCard.style.removeProperty("--mouse-x");
+      activeCard.style.removeProperty("--mouse-y");
+      activeCard = null;
+    }
+    cancelAnimationFrame(rafId);
+    return;
+  }
+  if (activeCard !== target) {
+    if (activeCard) {
+      activeCard.style.removeProperty("--mouse-x");
+      activeCard.style.removeProperty("--mouse-y");
+    }
+    activeCard = target;
+  }
   cancelAnimationFrame(rafId);
   rafId = requestAnimationFrame(() => {
-    magicalBorders.forEach((border) => {
-      const cards = border.querySelectorAll(".card-borders-item");
-      cards.forEach((card) => {
-        const rect = card.getBoundingClientRect();
-        const cardMouseX = mouseX - rect.left;
-        const cardMouseY = mouseY - rect.top;
-        card.style.setProperty("--mouse-x", `${cardMouseX}px`);
-        card.style.setProperty("--mouse-y", `${cardMouseY}px`);
-      });
-    });
+    if (activeCard) {
+      const rect = activeCard.getBoundingClientRect();
+      const cardMouseX = mouseX - rect.left;
+      const cardMouseY = mouseY - rect.top;
+      activeCard.style.setProperty("--mouse-x", `${cardMouseX}px`);
+      activeCard.style.setProperty("--mouse-y", `${cardMouseY}px`);
+    }
   });
 }
 magicalBorders.forEach((border) => {
   border.addEventListener("mousemove", handleMouseMove);
+  border.addEventListener("mouseout", () => {
+    if (activeCard) {
+      activeCard.style.removeProperty("--mouse-x");
+      activeCard.style.removeProperty("--mouse-y");
+      activeCard = null;
+    }
+    cancelAnimationFrame(rafId);
+  });
 });
