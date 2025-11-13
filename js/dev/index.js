@@ -954,47 +954,28 @@ function customCursor() {
 }
 document.querySelector("[data-fls-cursor]") || document.querySelector("[data-fls-cursor-shadow]") ? window.addEventListener("load", customCursor) : null;
 const magicalBorders = document.querySelectorAll("[data-card-borders]");
-let activeCard = null;
 let rafId;
-function handleMouseMove(event) {
+function handleMouseMove(border, event) {
   const mouseX = event.clientX;
   const mouseY = event.clientY;
-  const target = event.target.closest(".card-borders-item");
-  if (!target) {
-    if (activeCard) {
-      activeCard.style.removeProperty("--mouse-x");
-      activeCard.style.removeProperty("--mouse-y");
-      activeCard = null;
-    }
-    cancelAnimationFrame(rafId);
-    return;
-  }
-  if (activeCard !== target) {
-    if (activeCard) {
-      activeCard.style.removeProperty("--mouse-x");
-      activeCard.style.removeProperty("--mouse-y");
-    }
-    activeCard = target;
-  }
   cancelAnimationFrame(rafId);
   rafId = requestAnimationFrame(() => {
-    if (activeCard) {
-      const rect = activeCard.getBoundingClientRect();
+    const cards = border.querySelectorAll(".card-borders-item");
+    if (!cards) {
+      console.warn("==.card-borders-item== not found!");
+      return;
+    }
+    cards.forEach((card) => {
+      const rect = card.getBoundingClientRect();
       const cardMouseX = mouseX - rect.left;
       const cardMouseY = mouseY - rect.top;
-      activeCard.style.setProperty("--mouse-x", `${cardMouseX}px`);
-      activeCard.style.setProperty("--mouse-y", `${cardMouseY}px`);
-    }
+      card.style.setProperty("--mouse-x", `${cardMouseX}px`);
+      card.style.setProperty("--mouse-y", `${cardMouseY}px`);
+    });
   });
 }
 magicalBorders.forEach((border) => {
-  border.addEventListener("mousemove", handleMouseMove);
-  border.addEventListener("mouseout", () => {
-    if (activeCard) {
-      activeCard.style.removeProperty("--mouse-x");
-      activeCard.style.removeProperty("--mouse-y");
-      activeCard = null;
-    }
-    cancelAnimationFrame(rafId);
+  border.addEventListener("mousemove", (event) => {
+    handleMouseMove(border, event);
   });
 });
