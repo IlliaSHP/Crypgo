@@ -804,30 +804,30 @@ mark {
   opacity: 0;
 }
 
-.logo {
+.logo-intro {
   position: relative;
   width: 6.25rem;
   height: 6.25rem;
   display: flex;
   justify-content: end;
 }
-.logo .circle {
+.logo-intro .circle {
   height: 100%;
   width: 100%;
   rotate: -20deg;
   transition: rotate 1s;
 }
-.logo .circle path {
+.logo-intro .circle path {
   stroke-dasharray: 0 200;
   stroke: white;
 }
-[data-fls-loaded] .logo .circle {
+[data-fls-loaded] .logo-intro .circle {
   rotate: 0deg;
 }
-[data-fls-loaded] .logo .circle path {
+[data-fls-loaded] .logo-intro .circle path {
   animation: logo-circle 1s ease-in-out forwards;
 }
-.logo .triangle {
+.logo-intro .triangle {
   position: absolute;
   top: 50%;
   left: -15%;
@@ -839,13 +839,13 @@ mark {
   opacity: 0;
   transition: opacity 0.5s, left 0.5s;
 }
-.logo .triangle:nth-of-type(2) {
+.logo-intro .triangle:nth-of-type(2) {
   transition-delay: 1s;
 }
-.logo .triangle:nth-of-type(3) {
+.logo-intro .triangle:nth-of-type(3) {
   transition-delay: 1.2s;
 }
-[data-fls-loaded] .logo .triangle {
+[data-fls-loaded] .logo-intro .triangle {
   left: -5%;
   opacity: 1;
 }

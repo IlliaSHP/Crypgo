@@ -925,7 +925,7 @@ function preloader() {
     const preloaderTemplate = `
 		<div class="fls-preloader">
 			<div class="fls-preloader__body">
-				<div class="logo">
+				<div class="logo-intro">
 					<svg class="circle" viewBox="0 0 82 77" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M72.751 37.8762C71.501 77.3762 15.501 77.3762 14.251 37.8762" stroke="#D42727" stroke-width="18.5"/>
 						<path d="M14.2505 38.8762C15.501 -1.12382 72.001 -0.123816 72.7509 38.8762" stroke="#532222" stroke-width="18.5"/>
@@ -961,7 +961,7 @@ function preloader() {
     addLoadedClass();
   }
   function addLoadedClass() {
-    const logo = document.querySelector(".logo .circle");
+    const logo = document.querySelector(".logo-intro .circle");
     if (!logo) return;
     logo.addEventListener("animationend", function() {
       if (!isLogoAnimationCompleted) {
