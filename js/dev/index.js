@@ -1,4 +1,4 @@
-import { s as slideUp, a as slideToggle, b as bodyLockToggle, c as bodyLockStatus, u as uniqArray, i as isMobile } from "./common.min.js";
+import { s as slideUp, a as slideToggle, d as dataMediaQueries, b as bodyLockToggle, c as bodyLockStatus, u as uniqArray, i as isMobile } from "./common.min.js";
 (function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) return;
@@ -584,7 +584,7 @@ const circles = decorElement?.querySelectorAll(".decor-circle");
 let currentLineIndex = 0;
 let isAnimating = false;
 let animationTimeout = null;
-function log(message, data = null) {
+function log$1(message, data = null) {
   const timestamp = (/* @__PURE__ */ new Date()).toLocaleTimeString();
   console.log(`[${timestamp}] 🎬 ANIMATION: ${message}`, data ? data : "");
 }
@@ -632,27 +632,19 @@ function initializeAnimationObserver() {
     return;
   }
   if (!circles || circles.length === 0) ;
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      if (mutation.type === "attributes" && mutation.attributeName === "class") {
-        if (watcherContainer.classList.contains("--watcher-view")) {
-          if (!isAnimating) {
-            currentLineIndex = 0;
-            animationTimeout = setTimeout(() => {
-              animateLine(currentLineIndex);
-            }, initialDelay);
-          } else {
-            log("---");
-          }
-        } else {
-          log("---");
-        }
+  document.addEventListener("watcherCallback", function(e) {
+    const entry = e.detail.entry;
+    const targetElement = entry.target;
+    if (targetElement === watcherContainer && targetElement.classList.contains("--watcher-view")) {
+      if (!isAnimating) {
+        currentLineIndex = 0;
+        animationTimeout = setTimeout(() => {
+          animateLine(currentLineIndex);
+        }, initialDelay);
+      } else {
+        log$1("---");
       }
-    });
-  });
-  observer.observe(watcherContainer, {
-    attributes: true,
-    attributeFilter: ["class"]
+    }
   });
   if (watcherContainer.classList.contains("--watcher-view")) {
     if (!isAnimating) {
@@ -671,6 +663,124 @@ window.addEventListener("beforeunload", () => {
     clearTimeout(animationTimeout);
   }
 });
+function spollers() {
+  const spollersArray = document.querySelectorAll("[data-fls-spollers]");
+  if (spollersArray.length > 0) {
+    let initSpollers = function(spollersArray2, matchMedia = false) {
+      spollersArray2.forEach((spollersBlock) => {
+        spollersBlock = matchMedia ? spollersBlock.item : spollersBlock;
+        if (matchMedia.matches || !matchMedia) {
+          spollersBlock.classList.add("--spoller-init");
+          initSpollerBody(spollersBlock);
+        } else {
+          spollersBlock.classList.remove("--spoller-init");
+          initSpollerBody(spollersBlock, false);
+        }
+      });
+    }, initSpollerBody = function(spollersBlock, hideSpollerBody = true) {
+      let spollerItems = spollersBlock.querySelectorAll("details");
+      if (spollerItems.length) {
+        spollerItems.forEach((spollerItem) => {
+          let spollerTitle = spollerItem.querySelector("summary");
+          if (hideSpollerBody) {
+            spollerTitle.removeAttribute("tabindex");
+            if (!spollerItem.hasAttribute("data-fls-spollers-open")) {
+              spollerItem.open = false;
+              spollerTitle.nextElementSibling.hidden = true;
+            } else {
+              spollerTitle.classList.add("--spoller-active");
+              spollerItem.open = true;
+            }
+          } else {
+            spollerTitle.setAttribute("tabindex", "-1");
+            spollerTitle.classList.remove("--spoller-active");
+            spollerItem.open = true;
+            spollerTitle.nextElementSibling.hidden = false;
+          }
+        });
+      }
+    }, setSpollerAction = function(e) {
+      const el = e.target;
+      if (el.closest("summary") && el.closest("[data-fls-spollers]")) {
+        e.preventDefault();
+        if (el.closest("[data-fls-spollers]").classList.contains("--spoller-init")) {
+          const spollerTitle = el.closest("summary");
+          const spollerBlock = spollerTitle.closest("details");
+          const spollersBlock = spollerTitle.closest("[data-fls-spollers]");
+          const oneSpoller = spollersBlock.hasAttribute("data-fls-spollers-one");
+          const scrollSpoller = spollerBlock.hasAttribute("data-fls-spollers-scroll");
+          const spollerSpeed = spollersBlock.dataset.flsSpollersSpeed ? parseInt(spollersBlock.dataset.flsSpollersSpeed) : 500;
+          if (!spollersBlock.querySelectorAll(".--slide").length) {
+            if (oneSpoller && !spollerBlock.open) {
+              hideSpollersBody(spollersBlock);
+            }
+            !spollerBlock.open ? spollerBlock.open = true : setTimeout(() => {
+              spollerBlock.open = false;
+            }, spollerSpeed);
+            spollerTitle.classList.toggle("--spoller-active");
+            slideToggle(spollerTitle.nextElementSibling, spollerSpeed);
+            if (scrollSpoller && spollerTitle.classList.contains("--spoller-active")) {
+              const scrollSpollerValue = spollerBlock.dataset.flsSpollersScroll;
+              const scrollSpollerOffset = +scrollSpollerValue ? +scrollSpollerValue : 0;
+              const scrollSpollerNoHeader = spollerBlock.hasAttribute("data-fls-spollers-scroll-noheader") ? document.querySelector(".header").offsetHeight : 0;
+              window.scrollTo(
+                {
+                  top: spollerBlock.offsetTop - (scrollSpollerOffset + scrollSpollerNoHeader),
+                  behavior: "smooth"
+                }
+              );
+            }
+          }
+        }
+      }
+      if (!el.closest("[data-fls-spollers]")) {
+        const spollersClose = document.querySelectorAll("[data-fls-spollers-close]");
+        if (spollersClose.length) {
+          spollersClose.forEach((spollerClose) => {
+            const spollersBlock = spollerClose.closest("[data-fls-spollers]");
+            const spollerCloseBlock = spollerClose.parentNode;
+            if (spollersBlock.classList.contains("--spoller-init")) {
+              const spollerSpeed = spollersBlock.dataset.flsSpollersSpeed ? parseInt(spollersBlock.dataset.flsSpollersSpeed) : 500;
+              spollerClose.classList.remove("--spoller-active");
+              slideUp(spollerClose.nextElementSibling, spollerSpeed);
+              setTimeout(() => {
+                spollerCloseBlock.open = false;
+              }, spollerSpeed);
+            }
+          });
+        }
+      }
+    }, hideSpollersBody = function(spollersBlock) {
+      const spollerActiveBlock = spollersBlock.querySelector("details[open]");
+      if (spollerActiveBlock && !spollersBlock.querySelectorAll(".--slide").length) {
+        const spollerActiveTitle = spollerActiveBlock.querySelector("summary");
+        const spollerSpeed = spollersBlock.dataset.flsSpollersSpeed ? parseInt(spollersBlock.dataset.flsSpollersSpeed) : 500;
+        spollerActiveTitle.classList.remove("--spoller-active");
+        slideUp(spollerActiveTitle.nextElementSibling, spollerSpeed);
+        setTimeout(() => {
+          spollerActiveBlock.open = false;
+        }, spollerSpeed);
+      }
+    };
+    document.addEventListener("click", setSpollerAction);
+    const spollersRegular = Array.from(spollersArray).filter(function(item, index, self) {
+      return !item.dataset.flsSpollers.split(",")[0];
+    });
+    if (spollersRegular.length) {
+      initSpollers(spollersRegular);
+    }
+    let mdQueriesArray = dataMediaQueries(spollersArray, "flsSpollers");
+    if (mdQueriesArray && mdQueriesArray.length) {
+      mdQueriesArray.forEach((mdQueriesItem) => {
+        mdQueriesItem.matchMedia.addEventListener("change", function() {
+          initSpollers(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia);
+        });
+        initSpollers(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia);
+      });
+    }
+  }
+}
+window.addEventListener("load", spollers);
 function menuInit() {
   document.addEventListener("click", function(e) {
     if (bodyLockStatus && e.target.closest("[data-fls-menu]")) {
@@ -976,6 +1086,12 @@ function preloader() {
       htmlDocument.removeAttribute("data-fls-preloader-loading");
       setTimeout(() => {
         htmlDocument.setAttribute("intro-hide", "");
+        const introCompleteEvent = new CustomEvent("introAnimationComplete", {
+          detail: {
+            message: "Intro animation completed, starting element animations"
+          }
+        });
+        document.dispatchEvent(introCompleteEvent);
         htmlDocument.removeAttribute("data-fls-scrolllock");
       }, 500);
     } else {
@@ -1595,53 +1711,236 @@ document.querySelector("[data-fls-cursor]") || document.querySelector("[data-fls
 document.addEventListener("DOMContentLoaded", customCursor);
 function customCursor() {
   const hasFlsTouch = document.documentElement.hasAttribute("data-fls-touch");
-  if (!hasFlsTouch) {
-    let updateMousePosition = function(border) {
-      const state = mouseState.get(border);
-      if (!state) return;
-      const { targetX, targetY, smoothFactor } = state;
-      state.currentX += (targetX - state.currentX) * smoothFactor;
-      state.currentY += (targetY - state.currentY) * smoothFactor;
-      const cards = border.querySelectorAll(".card-borders-item");
-      cards.forEach((card) => {
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty("--mouse-x", `${state.currentX - rect.left}px`);
-        card.style.setProperty("--mouse-y", `${state.currentY - rect.top}px`);
+  if (hasFlsTouch) return;
+  const magicalBorders = document.querySelectorAll("[data-fls-cardbg]");
+  const cardCache = /* @__PURE__ */ new Map();
+  function cacheCardPositions(border) {
+    if (cardCache.has(border)) return cardCache.get(border);
+    const cards = border.querySelectorAll(".card-borders-item");
+    const cachedCards = Array.from(cards).map((card) => ({
+      element: card,
+      rect: card.getBoundingClientRect()
+    }));
+    cardCache.set(border, cachedCards);
+    return cachedCards;
+  }
+  function updateCardCache(border) {
+    const cachedCards = cardCache.get(border);
+    if (cachedCards) {
+      cachedCards.forEach((card) => {
+        card.rect = card.element.getBoundingClientRect();
       });
-      const distance = Math.hypot(
-        targetX - state.currentX,
-        targetY - state.currentY
-      );
-      if (distance > 0.5) {
-        state.rafId = requestAnimationFrame(() => updateMousePosition(border));
-      }
-    }, handleMouseMove = function(border, event) {
-      let state = mouseState.get(border);
-      if (!state) {
-        state = {
-          currentX: event.clientX,
-          currentY: event.clientY,
-          targetX: event.clientX,
-          targetY: event.clientY,
-          smoothFactor: 0.2,
-          // Плавність курсору (0.05-0.2)
-          rafId: null
-        };
-        mouseState.set(border, state);
-      }
-      state.targetX = event.clientX;
-      state.targetY = event.clientY;
-      if (state.rafId) {
-        cancelAnimationFrame(state.rafId);
-      }
+    }
+  }
+  const mouseState = /* @__PURE__ */ new WeakMap();
+  function updateMousePosition(border) {
+    const state = mouseState.get(border);
+    if (!state) return;
+    const { targetX, targetY, smoothFactor } = state;
+    state.currentX += (targetX - state.currentX) * smoothFactor;
+    state.currentY += (targetY - state.currentY) * smoothFactor;
+    const cachedCards = cardCache.get(border);
+    if (cachedCards) {
+      cachedCards.forEach(({ element, rect }) => {
+        if (rect.bottom > 0 && rect.top < window.innerHeight) {
+          element.style.setProperty("--mouse-x", `${state.currentX - rect.left}px`);
+          element.style.setProperty("--mouse-y", `${state.currentY - rect.top}px`);
+        }
+      });
+    }
+    const dx = targetX - state.currentX;
+    const dy = targetY - state.currentY;
+    const distanceSquared = dx * dx + dy * dy;
+    if (distanceSquared > 0.25) {
       state.rafId = requestAnimationFrame(() => updateMousePosition(border));
-    };
-    const magicalBorders = document.querySelectorAll("[data-fls-cardbg]");
-    const mouseState = /* @__PURE__ */ new WeakMap();
-    magicalBorders.forEach((border) => {
-      border.addEventListener("mousemove", (event) => {
-        handleMouseMove(border, event);
-      });
+    } else {
+      state.rafId = null;
+    }
+  }
+  function handleMouseMove(border, event) {
+    let state = mouseState.get(border);
+    if (!state) {
+      state = {
+        currentX: event.clientX,
+        currentY: event.clientY,
+        targetX: event.clientX,
+        targetY: event.clientY,
+        smoothFactor: 0.15,
+        // Трохи зменшено для експерименту
+        rafId: null
+      };
+      mouseState.set(border, state);
+    }
+    state.targetX = event.clientX;
+    state.targetY = event.clientY;
+    if (state.rafId) {
+      cancelAnimationFrame(state.rafId);
+    }
+    state.rafId = requestAnimationFrame(() => updateMousePosition(border));
+  }
+  let scrollTimeout;
+  function handleScroll() {
+    if (!scrollTimeout) {
+      scrollTimeout = setTimeout(() => {
+        magicalBorders.forEach((border) => updateCardCache(border));
+        scrollTimeout = null;
+      }, 150);
+    }
+  }
+  let resizeTimeout;
+  function handleResize() {
+    if (!resizeTimeout) {
+      resizeTimeout = setTimeout(() => {
+        cardCache.clear();
+        magicalBorders.forEach((border) => cacheCardPositions(border));
+        resizeTimeout = null;
+      }, 150);
+    }
+  }
+  magicalBorders.forEach((border) => {
+    cacheCardPositions(border);
+    border.addEventListener("mousemove", (event) => {
+      handleMouseMove(border, event);
+    }, { passive: true });
+  });
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  window.addEventListener("resize", handleResize, { passive: true });
+}
+const animationConfig = [
+  {
+    selector: ".items-first-to-use__decor-line",
+    animationName: "drawLineFirstToUse",
+    animationDuration: 7,
+    // в секундах
+    timingFunction: "linear",
+    fillMode: "forwards",
+    initialDelay: 21,
+    // затримка перед першим виконанням
+    delayBetweenAnimations: 7
+    // затримка між повторюваннями
+  }
+];
+let animationTimeouts = /* @__PURE__ */ new Map();
+let animatedElements = /* @__PURE__ */ new WeakSet();
+let watcherElementsWithClass = /* @__PURE__ */ new WeakSet();
+function log(message, data = null) {
+  const timestamp = (/* @__PURE__ */ new Date()).toLocaleTimeString();
+  console.log(`[${timestamp}] 🎬 ANIMATION: ${message}`, data ? data : "");
+}
+function runAnimationCycle(element, config, isFirstRun = false) {
+  const { animationName, animationDuration: animationDuration2, timingFunction, fillMode } = config;
+  element.style.animation = `${animationName} ${animationDuration2}s ${timingFunction} ${fillMode}`;
+  log(`Animation cycle started`, {
+    element: element.className,
+    animation: animationName,
+    duration: animationDuration2,
+    isFirstRun
+  });
+  const timeout = setTimeout(() => {
+    scheduleNextCycle(element, config);
+  }, animationDuration2 * 1e3);
+  if (!animationTimeouts.has(element)) {
+    animationTimeouts.set(element, []);
+  }
+  animationTimeouts.get(element).push(timeout);
+}
+function scheduleNextCycle(element, config) {
+  const { delayBetweenAnimations } = config;
+  element.style.animation = "none";
+  void element.offsetWidth;
+  log(`Scheduling next cycle in ${delayBetweenAnimations}s`);
+  const timeout = setTimeout(() => {
+    runAnimationCycle(element, config, false);
+  }, delayBetweenAnimations * 1e3);
+  if (!animationTimeouts.has(element)) {
+    animationTimeouts.set(element, []);
+  }
+  animationTimeouts.get(element).push(timeout);
+}
+function startAnimation(element, config) {
+  const { initialDelay: initialDelay2 } = config;
+  log(`Scheduling initial animation in ${initialDelay2}s`, {
+    element: element.className
+  });
+  const timeout = setTimeout(() => {
+    runAnimationCycle(element, config, true);
+  }, initialDelay2 * 1e3);
+  if (!animationTimeouts.has(element)) {
+    animationTimeouts.set(element, []);
+  }
+  animationTimeouts.get(element).push(timeout);
+}
+function handleWatcherCallback(e) {
+  const entry = e.detail.entry;
+  const targetElement = entry.target;
+  if (!targetElement.hasAttribute("data-fls-animationdecorline")) {
+    return;
+  }
+  if (targetElement.classList.contains("--watcher-view")) {
+    if (watcherElementsWithClass.has(targetElement)) {
+      log(`Element already has --watcher-view class, skipping animation start`);
+      return;
+    }
+    watcherElementsWithClass.add(targetElement);
+    log(`Element received --watcher-view class, starting animations`, {
+      element: targetElement.className
     });
+    animationConfig.forEach((config) => {
+      const animatedElement = targetElement.querySelector(config.selector);
+      if (animatedElement && !animatedElements.has(animatedElement)) {
+        animatedElements.add(animatedElement);
+        startAnimation(animatedElement, config);
+      }
+    });
+  } else {
+    if (watcherElementsWithClass.has(targetElement)) {
+      log(`Element lost --watcher-view class, clearing animation timeouts`);
+      watcherElementsWithClass.delete(targetElement);
+      animationConfig.forEach((config) => {
+        const animatedElement = targetElement.querySelector(config.selector);
+        if (animatedElement && animationTimeouts.has(animatedElement)) {
+          animationTimeouts.get(animatedElement).forEach((timeout) => clearTimeout(timeout));
+          animationTimeouts.delete(animatedElement);
+          animatedElements.delete(animatedElement);
+          animatedElement.style.animation = "none";
+        }
+      });
+    }
   }
 }
+function startAnimationsOnIntroComplete() {
+  log(`Intro animation completed event received`);
+  animationConfig.forEach((config) => {
+    const elements = document.querySelectorAll(`[data-fls-animationdecorline] ${config.selector}`);
+    elements.forEach((animatedElement) => {
+      const parentContainer = animatedElement.closest("[data-fls-animationdecorline]");
+      if (parentContainer && parentContainer.classList.contains("--watcher-view")) {
+        if (!animatedElements.has(animatedElement)) {
+          animatedElements.add(animatedElement);
+          watcherElementsWithClass.add(parentContainer);
+          log(`Element already in viewport, starting animation`, {
+            element: animatedElement.className
+          });
+          startAnimation(animatedElement, config);
+        }
+      }
+    });
+  });
+}
+function initializeAnimations() {
+  document.addEventListener("introAnimationComplete", function(e) {
+    log(`introAnimationComplete event detected`, e.detail);
+    startAnimationsOnIntroComplete();
+  });
+  document.addEventListener("watcherCallback", handleWatcherCallback);
+  log("Animations initialized, waiting for introAnimationComplete and watcherCallback events");
+}
+document.addEventListener("DOMContentLoaded", () => {
+  initializeAnimations();
+});
+window.addEventListener("beforeunload", () => {
+  animationTimeouts.forEach((timeouts) => {
+    timeouts.forEach((timeout) => clearTimeout(timeout));
+  });
+  animationTimeouts.clear();
+});

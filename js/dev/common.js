@@ -138,12 +138,28 @@ let bodyLock = (delay = 500) => {
 function uniqArray(array) {
   return array.filter((item, index, self) => self.indexOf(item) === index);
 }
+function dataMediaQueries(array, dataSetValue) {
+  const media = Array.from(array).filter((item) => item.dataset[dataSetValue]).map((item) => {
+    const [value, type = "max"] = item.dataset[dataSetValue].split(",");
+    return { value, type, item };
+  });
+  if (media.length === 0) return [];
+  const breakpointsArray = media.map(({ value, type }) => `(${type}-width: ${value}px),${value},${type}`);
+  const uniqueQueries = [...new Set(breakpointsArray)];
+  return uniqueQueries.map((query) => {
+    const [mediaQuery, mediaBreakpoint, mediaType] = query.split(",");
+    const matchMedia = window.matchMedia(mediaQuery);
+    const itemsArray = media.filter((item) => item.value === mediaBreakpoint && item.type === mediaType);
+    return { itemsArray, matchMedia };
+  });
+}
 addLoadedAttr();
 addTouchAttr();
 export {
   slideToggle as a,
   bodyLockToggle as b,
   bodyLockStatus as c,
+  dataMediaQueries as d,
   isMobile as i,
   slideUp as s,
   uniqArray as u
