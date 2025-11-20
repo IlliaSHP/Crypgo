@@ -15,15 +15,19 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="./assets/img/favicon.ico">
 		<title>Home Page</title>
-		<script type="module" crossorigin="" src="./js/index.min.js?v=1763414109981"></script>
-		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1763414109981">
-		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1763414109981">
+		<script type="module" crossorigin="" src="./js/index.min.js?v=1763673368571"></script>
+		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1763673368571">
+		<link rel="modulepreload" crossorigin="" href="./js/main.min.js?v=1763673368571">
+		<link rel="modulepreload" crossorigin="" href="./js/blockhead.min.js?v=1763673368571">
+		<link rel="stylesheet" crossorigin="" href="./css/main.min.css?v=1763673368571">
+		<link rel="stylesheet" crossorigin="" href="./css/blockhead.min.css?v=1763673368571">
+		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1763673368571">
 	</head>
 	<body>
-		<div class="wrapper">
+		<div data-fls-cursor-shadow="" class="wrapper">
 			<header data-fls-header="" data-fls-header-scroll="" class="header">
 				<div class="header__container">
-					<div class="header__logo logo">
+					<a href="index.html" data-fls-logo="" class="header__logo logo">
 						<!-- <img src="@img/icons/logo.svg" alt="logo"> -->
 						<svg width="28" height="28" viewbox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M4.35303 5.76505C5.73064 4.06339 7.47722 2.66821 9.47229 1.67573C11.4674 0.683256 13.6635 0.1171 15.9091 0.0163173C18.1547 -0.0844656 20.3965 0.282523 22.4797 1.09197C24.5629 1.90142 26.438 3.13406 27.9757 4.70488L22.8436 9.31408C22.0019 8.45422 20.9754 7.77947 19.8351 7.33638C18.6947 6.89329 17.4676 6.6924 16.2384 6.74757C15.0091 6.80274 13.807 7.11265 12.7149 7.65593C11.6228 8.19921 10.6667 8.96293 9.91258 9.89442L4.35303 5.76505Z" fill="white"></path>
@@ -33,43 +37,37 @@
 						</svg>
 						<span class="logo__company">
 							Cryp
-							<span>go</span>
+							<mark>go</mark>
 						</span>
-					</div>
+					</a>
 					<div class="header__menu menu">
 						<nav class="menu__body">
 							<ul class="menu__list">
 								<li class="menu__item">
-									<a href="#" class="menu__link">Why Crypgo</a>
+									<a href="index.html#features" data-fls-scrollto-header="" data-fls-scrollto=".features" class="menu__link">Why Crypgo</a>
 								</li>
 								<li class="menu__item">
-									<a href="#" class="menu__link">Features</a>
+									<a href="index.html#best-solution" data-fls-scrollto-header="" data-fls-scrollto=".best-solution" class="menu__link">Features</a>
 								</li>
 								<li class="menu__item">
-									<a href="#" class="menu__link">Benefits</a>
+									<a href="index.html#portfolio" data-fls-scrollto-header="" data-fls-scrollto=".portfolio" class="menu__link">Portfolio</a>
 								</li>
 								<li class="menu__item">
-									<a href="#" class="menu__link">Services</a>
+									<a href="index.html#upgrade" data-fls-scrollto-header="" data-fls-scrollto=".upgrade" class="menu__link">Upgrade</a>
 								</li>
 								<li class="menu__item">
-									<a href="#" class="menu__link">FAQs</a>
+									<a href="index.html#questions" data-fls-scrollto-header="" data-fls-scrollto=".questions" class="menu__link">FAQs</a>
 								</li>
 							</ul>
 						</nav>
 					</div>
-					<!--
-<fetch url="@components/layout/menu/menu.json">
-<each loop='item in response'>
-</each>
-</fetch>
--->
 					<button data-fls-button="" class="header__button button">Get template</button>
 					<button type="button" data-fls-menu="" class="menu__icon icon-menu">
 						<span></span>
 					</button>
 				</div>
 			</header>
-			<main data-fls-cursor-shadow="" class="page page--index">
+			<main class="page page--index">
 				<section class="page__hero hero">
 					<div class="hero__container">
 						<div class="hero__content">
@@ -142,7 +140,7 @@
 							<h2 class="block-header__title">Top crypto coins updates</h2>
 						</div>
 						<div class="coins__items items-coins" data-fls-cardbg="">
-							<a href="#" class="items-coins__item card-borders-item">
+							<a href="https://coinmarketcap.com/currencies/bitcoin/" class="items-coins__item card-borders-item">
 								<div class="card-borders-inner"></div>
 								<div class="items-coins__content">
 									<div class="items-coins__category">Highest volume</div>
@@ -154,7 +152,7 @@
 									</div>
 								</div>
 							</a>
-							<a href="#" class="items-coins__item card-borders-item">
+							<a href="https://coinmarketcap.com/currencies/ethereum" class="items-coins__item card-borders-item">
 								<div class="card-borders-inner"></div>
 								<div class="items-coins__content">
 									<div class="items-coins__category">Top gainer</div>
@@ -166,7 +164,7 @@
 									</div>
 								</div>
 							</a>
-							<a href="#" class="items-coins__item card-borders-item">
+							<a href="https://coinmarketcap.com/currencies/litecoin" class="items-coins__item card-borders-item">
 								<div class="card-borders-inner"></div>
 								<div class="items-coins__content">
 									<div class="items-coins__category">New listing</div>
@@ -178,7 +176,7 @@
 									</div>
 								</div>
 							</a>
-							<a href="#" class="items-coins__item card-borders-item">
+							<a href="https://coinmarketcap.com/currencies/polkadot" class="items-coins__item card-borders-item">
 								<div class="card-borders-inner"></div>
 								<div class="items-coins__content">
 									<div class="items-coins__category">Most traded</div>
@@ -190,7 +188,7 @@
 									</div>
 								</div>
 							</a>
-							<a href="#" class="items-coins__item card-borders-item">
+							<a href="https://coinmarketcap.com/currencies/solana/" class="items-coins__item card-borders-item">
 								<div class="card-borders-inner"></div>
 								<div class="items-coins__content">
 									<div class="items-coins__category">Biggest gainers</div>
@@ -202,7 +200,7 @@
 									</div>
 								</div>
 							</a>
-							<a href="#" class="items-coins__item card-borders-item">
+							<a href="https://coinmarketcap.com/currencies/chainlink" class="items-coins__item card-borders-item">
 								<div class="card-borders-inner"></div>
 								<div class="items-coins__content">
 									<div class="items-coins__category">Trending</div>
@@ -217,7 +215,7 @@
 						</div>
 					</div>
 				</section>
-				<section class="features">
+				<section data-fls-watcher="navigator" class="features">
 					<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".2" class="features__container">
 						<div data-fls-contentfeatures="" class="features__content content-features">
 							<div data-fls-blockhead="" class="content-features__header-block block-header">
@@ -268,7 +266,7 @@
 												</div>
 												<div class="statistic-features__price-change">
 													<mark>1.05%</mark>
-													<img src="./assets/img/features/arrow.svg" alt="Image">
+													<img src="./assets/img/features/arrow.svg" alt="arrow">
 												</div>
 											</li>
 											<li class="statistic-features__item">
@@ -281,7 +279,7 @@
 												</div>
 												<div class="statistic-features__price-change">
 													<mark>3.24%</mark>
-													<img src="./assets/img/features/arrow.svg" alt="Image">
+													<img src="./assets/img/features/arrow.svg" alt="arrow">
 												</div>
 											</li>
 											<li class="statistic-features__item">
@@ -294,7 +292,7 @@
 												</div>
 												<div class="statistic-features__price-change">
 													<mark>1.31%</mark>
-													<img src="./assets/img/features/arrow.svg" alt="Image">
+													<img src="./assets/img/features/arrow.svg" alt="arrow">
 												</div>
 											</li>
 											<li class="statistic-features__item">
@@ -307,7 +305,7 @@
 												</div>
 												<div class="statistic-features__price-change">
 													<mark>2.05%</mark>
-													<img src="./assets/img/features/arrow.svg" alt="Image">
+													<img src="./assets/img/features/arrow.svg" alt="arrow">
 												</div>
 											</li>
 										</ul>
@@ -413,7 +411,7 @@
 						</div>
 					</div>
 				</section>
-				<section class="best-solution">
+				<section data-fls-watcher="navigator" class="best-solution">
 					<div class="best-solution__container">
 						<div data-fls-blockhead="" class="best-solution__header-block block-header block-header--center">
 							<div class="block-header__label">
@@ -527,7 +525,7 @@
 						</div>
 					</div>
 				</section>
-				<section class="portfolio">
+				<section data-fls-watcher="navigator" class="portfolio">
 					<div class="portfolio__container">
 						<div class="portfolio__assets assets-portfolio">
 							<div class="assets-portfolio__column">
@@ -655,7 +653,7 @@
 						</div>
 					</div>
 				</section>
-				<section class="upgrade">
+				<section data-fls-watcher="navigator" class="upgrade">
 					<div class="upgrade__container">
 						<div class="upgrade__content">
 							<div data-fls-blockhead="" class="upgrade__block-header block-header">
@@ -869,7 +867,7 @@
 						</div>
 					</div>
 				</section>
-				<section class="questions">
+				<section data-fls-watcher="navigator" class="questions">
 					<div class="questions__container">
 						<div data-fls-blockhead="" class="questions__block-header block-header block-header--center">
 							<div class="block-header__label">
@@ -935,7 +933,88 @@
 				</section>
 			</main>
 			<footer data-fls-footer="" class="footer">
-				<div class="footer__container"></div>
+				<div class="footer__container">
+					<div class="footer__content">
+						<div class="footer__column">
+							<a href="index.html" data-fls-logo="" class="footer__logo logo">
+								<svg width="28" height="28" viewbox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M4.35303 5.76505C5.73064 4.06339 7.47722 2.66821 9.47229 1.67573C11.4674 0.683256 13.6635 0.1171 15.9091 0.0163173C18.1547 -0.0844656 20.3965 0.282523 22.4797 1.09197C24.5629 1.90142 26.438 3.13406 27.9757 4.70488L22.8436 9.31408C22.0019 8.45422 20.9754 7.77947 19.8351 7.33638C18.6947 6.89329 17.4676 6.6924 16.2384 6.74757C15.0091 6.80274 13.807 7.11265 12.7149 7.65593C11.6228 8.19921 10.6667 8.96293 9.91258 9.89442L4.35303 5.76505Z" fill="white"></path>
+									<path d="M28.0004 22.6611C26.5585 24.3131 24.7595 25.6459 22.7277 26.5675C20.6959 27.4891 18.4796 27.9776 16.2316 27.9992C13.9837 28.0209 11.7575 27.5753 9.70675 26.6931C7.65599 25.8109 5.82942 24.513 4.35303 22.8892L9.65846 18.4637C10.4666 19.3526 11.4665 20.063 12.5891 20.5459C13.7117 21.0289 14.9303 21.2728 16.1608 21.261C17.3914 21.2491 18.6046 20.9817 19.7168 20.4772C20.829 19.9727 21.8137 19.2432 22.603 18.3389L28.0004 22.6611Z" fill="white"></path>
+									<path d="M12.7827 14.2845L4.2611 20.9893L4.2611 7.57969L12.7827 14.2845Z" fill="#99E39E"></path>
+									<path d="M8.52173 14.2845L0.000111147 20.9893L0.000111759 7.57969L8.52173 14.2845Z" fill="#99E39E"></path>
+								</svg>
+								<span class="logo__company">
+									Cryp
+									<mark>go</mark>
+								</span>
+							</a>
+							<div class="footer__text">
+								<p>
+									Transform your crypto business with Crypgo Framer, a template for startups and blockchain services.
+								</p>
+							</div>
+							<div class="footer__social">
+								<a href="#" data-fls-magnate="" class="footer__icon">
+									<img src="./assets/img/icons/soc-inst.svg" alt="instagram">
+								</a>
+								<a href="#" data-fls-magnate="" class="footer__icon">
+									<img src="./assets/img/icons/soc-f.svg" alt="facebook">
+								</a>
+								<a href="#" data-fls-magnate="" class="footer__icon">
+									<img src="./assets/img/icons/soc-x.svg" alt="X">
+								</a>
+							</div>
+						</div>
+						<div class="footer__column">
+							<h5 class="footer__title">Links</h5>
+							<ul class="footer__list">
+								<li class="footer__item">
+									<a href="#">Features</a>
+								</li>
+								<li class="footer__item">
+									<a href="#">Benefits</a>
+								</li>
+								<li class="footer__item">
+									<a href="#">Services</a>
+								</li>
+								<li class="footer__item">
+									<a href="#">Why Crypgo</a>
+								</li>
+								<li class="footer__item">
+									<a href="#">FAQs</a>
+								</li>
+							</ul>
+						</div>
+						<div class="footer__column">
+							<h5 class="footer__title">Other Pages</h5>
+							<ul class="footer__list">
+								<li class="footer__item">
+									<a href="404.html" target="_blank">Error 404</a>
+								</li>
+								<li class="footer__item">
+									<a href="terms-of-service.html" target="_blank">Terms & Conditions</a>
+								</li>
+								<li class="footer__item">
+									<a href="privacy-policy.html" target="_blank">Privacy Policy</a>
+								</li>
+							</ul>
+						</div>
+						<div class="footer__column">
+							<h5 class="footer__title">Download app</h5>
+							<div class="footer__app app-footer">
+								<a href="#" class="app-footer__item">
+									<img src="./assets/img/icons/google-play.svg" alt="google play">
+								</a>
+								<a href="#" class="app-footer__item">
+									<img src="./assets/img/icons/app-store.svg" alt="app store">
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="footer__bottom bottom-footer">
+						<div class="bottom-footer__copyright">Copyright ©2025 Crypgo. All rights reserved</div>
+					</div>
+				</div>
 			</footer>
 		</div>
 	</body>
