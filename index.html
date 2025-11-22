@@ -1,31 +1,21 @@
 <!doctype html>
-<html lang="en">
+<html intro-hide="" lang="en">
 	<head>
-		<style data-fls-preloader="false" rel="preload">
-			body > *:not(.fls-preloader) {
-   opacity: 0;visibility: hidden;
-}
-[intro-hide] body > *:not(.fls-preloader) {
-   transition: opacity 0.5s ease .5s; 
-   opacity: 1;
-   visibility: visible;
-}
-		</style>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="./assets/img/favicon.ico">
 		<title>Home Page</title>
-		<script type="module" crossorigin="" src="./js/index.min.js?v=1763673368571"></script>
-		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1763673368571">
-		<link rel="modulepreload" crossorigin="" href="./js/main.min.js?v=1763673368571">
-		<link rel="modulepreload" crossorigin="" href="./js/blockhead.min.js?v=1763673368571">
-		<link rel="stylesheet" crossorigin="" href="./css/main.min.css?v=1763673368571">
-		<link rel="stylesheet" crossorigin="" href="./css/blockhead.min.css?v=1763673368571">
-		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1763673368571">
+		<script type="module" crossorigin="" src="./js/index.min.js?v=1763845983591"></script>
+		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1763845983591">
+		<link rel="modulepreload" crossorigin="" href="./js/main.min.js?v=1763845983591">
+		<link rel="modulepreload" crossorigin="" href="./js/blockhead.min.js?v=1763845983591">
+		<link rel="stylesheet" crossorigin="" href="./css/main.min.css?v=1763845983591">
+		<link rel="stylesheet" crossorigin="" href="./css/blockhead.min.css?v=1763845983591">
+		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1763845983591">
 	</head>
 	<body>
 		<div data-fls-cursor-shadow="" class="wrapper">
-			<header data-fls-header="" data-fls-header-scroll="" class="header">
+			<header data-fls-watcher="" data-fls-watcher-once="" data-fls-header="" data-fls-header-scroll="" class="header">
 				<div class="header__container">
 					<a href="index.html" data-fls-logo="" class="header__logo logo">
 						<!-- <img src="@img/icons/logo.svg" alt="logo"> -->
@@ -69,7 +59,7 @@
 			</header>
 			<main class="page page--index">
 				<section class="page__hero hero">
-					<div class="hero__container">
+					<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".4" class="hero__container">
 						<div class="hero__content">
 							<div class="hero__label">Future of crypto trading</div>
 							<div data-fls-blockhead="" class="hero__header-block block-header">
@@ -89,29 +79,33 @@
 							</button>
 						</div>
 						<div data-fls-parallax-parent="" class="hero__media">
-							<div data-fls-parallax="" data-fls-parallax-coefficient="7" class="hero__explore explore">
-								<img class="explore__text" src="./assets/img/hero/explore-text.svg" alt="explore-text">
-								<img class="explore__star" src="./assets/img/hero/explore-star.svg" alt="explore-star">
+							<div data-fls-mouse="" data-fls-mouse-dxr="" data-fls-mouse-dyr="" data-fls-mouse-cx="90" data-fls-mouse-cy="90" class="hero__explore-wrap explore">
+								<div data-fls-parallax="" data-fls-parallax-coefficient="7" class="explore__body">
+									<img class="explore__text" src="./assets/img/hero/explore-text.svg" alt="explore-text">
+									<img class="explore__star" src="./assets/img/hero/explore-star.svg" alt="explore-star">
+								</div>
 							</div>
-							<div class="hero__statistic">
-								<img src="./assets/img/hero/statistic.svg" alt="statistic">
+							<div data-fls-parallax="" data-fls-parallax-coefficient="5" class="hero__statistic-wrap">
+								<div data-fls-mouse="" data-fls-mouse-cx="110" data-fls-mouse-cy="110" class="hero__statistic">
+									<img src="./assets/img/hero/statistic.svg" alt="statistic">
+								</div>
 							</div>
-							<div class="hero__bank-card">
-								<img src="./assets/img/hero/bank-card.svg" alt="bank-card">
+							<div data-fls-parallax="" data-fls-parallax-coefficient="6" class="hero__bank-card">
+								<img data-fls-mouse="" data-fls-mouse-dxr="" data-fls-mouse-cx="175" data-fls-mouse-cy="150" src="./assets/img/hero/bank-card.svg" alt="bank-card">
 							</div>
-							<div class="hero__bg">
+							<div data-fls-parallax="" data-fls-parallax-coefficient="9" class="hero__bg">
 								<img src="./assets/img/hero/bg.svg" alt="bg">
 							</div>
 						</div>
 					</div>
 				</section>
 				<section class="partenrs">
-					<div class="partenrs__container">
+					<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".5" class="partenrs__container">
 						<div class="partenrs__label">
 							Trusted by top
 							<mark>crypto platforms</mark>
 						</div>
-						<div data-fls-marquee="" data-fls-marquee-speed="1000" class="partenrs__items">
+						<div data-fls-marquee="" data-fls-marquee-speed="300" class="partenrs__items">
 							<a href="#" class="partenrs__item">
 								<img src="./assets/img/partners/partner-1.svg" alt="partner">
 							</a>
@@ -131,7 +125,7 @@
 					</div>
 				</section>
 				<section class="coins">
-					<div class="coins__container">
+					<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".6" class="coins__container">
 						<div data-fls-blockhead="" class="coins__header-block block-header block-header--center">
 							<div class="block-header__label">
 								Featured
@@ -140,83 +134,95 @@
 							<h2 class="block-header__title">Top crypto coins updates</h2>
 						</div>
 						<div class="coins__items items-coins" data-fls-cardbg="">
-							<a href="https://coinmarketcap.com/currencies/bitcoin/" class="items-coins__item card-borders-item">
-								<div class="card-borders-inner"></div>
-								<div class="items-coins__content">
-									<div class="items-coins__category">Highest volume</div>
-									<img src="./assets/img/coins/btc.svg" alt="btc">
-									<div class="items-coins__crypto-coin">Bitcoin</div>
-									<div class="items-coins__value">
-										<div class="items-coins__price">93575.5</div>
-										<span class="items-coins__currency">USD</span>
+							<div class="items-coins__item-wrap">
+								<a href="https://coinmarketcap.com/currencies/bitcoin/" class="items-coins__item card-borders-item">
+									<div class="card-borders-inner"></div>
+									<div class="items-coins__content">
+										<div class="items-coins__category">Highest volume</div>
+										<img src="./assets/img/coins/btc.svg" alt="btc">
+										<div class="items-coins__crypto-coin">Bitcoin</div>
+										<div class="items-coins__value">
+											<div class="items-coins__price">93575.5</div>
+											<span class="items-coins__currency">USD</span>
+										</div>
 									</div>
-								</div>
-							</a>
-							<a href="https://coinmarketcap.com/currencies/ethereum" class="items-coins__item card-borders-item">
-								<div class="card-borders-inner"></div>
-								<div class="items-coins__content">
-									<div class="items-coins__category">Top gainer</div>
-									<img src="./assets/img/coins/eth.svg" alt="eth">
-									<div class="items-coins__crypto-coin">Ethereum</div>
-									<div class="items-coins__value">
-										<div class="items-coins__price">3337.28</div>
-										<span class="items-coins__currency">USD</span>
+								</a>
+							</div>
+							<div class="items-coins__item-wrap">
+								<a href="https://coinmarketcap.com/currencies/ethereum" class="items-coins__item card-borders-item">
+									<div class="card-borders-inner"></div>
+									<div class="items-coins__content">
+										<div class="items-coins__category">Top gainer</div>
+										<img src="./assets/img/coins/eth.svg" alt="eth">
+										<div class="items-coins__crypto-coin">Ethereum</div>
+										<div class="items-coins__value">
+											<div class="items-coins__price">3337.28</div>
+											<span class="items-coins__currency">USD</span>
+										</div>
 									</div>
-								</div>
-							</a>
-							<a href="https://coinmarketcap.com/currencies/litecoin" class="items-coins__item card-borders-item">
-								<div class="card-borders-inner"></div>
-								<div class="items-coins__content">
-									<div class="items-coins__category">New listing</div>
-									<img src="./assets/img/coins/litecoin.svg" alt="btc">
-									<div class="items-coins__crypto-coin">Litecoin</div>
-									<div class="items-coins__value">
-										<div class="items-coins__price">105.000</div>
-										<span class="items-coins__currency">USD</span>
+								</a>
+							</div>
+							<div class="items-coins__item-wrap">
+								<a href="https://coinmarketcap.com/currencies/litecoin" class="items-coins__item card-borders-item">
+									<div class="card-borders-inner"></div>
+									<div class="items-coins__content">
+										<div class="items-coins__category">New listing</div>
+										<img src="./assets/img/coins/litecoin.svg" alt="btc">
+										<div class="items-coins__crypto-coin">Litecoin</div>
+										<div class="items-coins__value">
+											<div class="items-coins__price">105.000</div>
+											<span class="items-coins__currency">USD</span>
+										</div>
 									</div>
-								</div>
-							</a>
-							<a href="https://coinmarketcap.com/currencies/polkadot" class="items-coins__item card-borders-item">
-								<div class="card-borders-inner"></div>
-								<div class="items-coins__content">
-									<div class="items-coins__category">Most traded</div>
-									<img src="./assets/img/coins/polkadot.svg" alt="btc">
-									<div class="items-coins__crypto-coin">Polkadot</div>
-									<div class="items-coins__value">
-										<div class="items-coins__price">6.6423</div>
-										<span class="items-coins__currency">USD</span>
+								</a>
+							</div>
+							<div class="items-coins__item-wrap">
+								<a href="https://coinmarketcap.com/currencies/polkadot" class="items-coins__item card-borders-item">
+									<div class="card-borders-inner"></div>
+									<div class="items-coins__content">
+										<div class="items-coins__category">Most traded</div>
+										<img src="./assets/img/coins/polkadot.svg" alt="btc">
+										<div class="items-coins__crypto-coin">Polkadot</div>
+										<div class="items-coins__value">
+											<div class="items-coins__price">6.6423</div>
+											<span class="items-coins__currency">USD</span>
+										</div>
 									</div>
-								</div>
-							</a>
-							<a href="https://coinmarketcap.com/currencies/solana/" class="items-coins__item card-borders-item">
-								<div class="card-borders-inner"></div>
-								<div class="items-coins__content">
-									<div class="items-coins__category">Biggest gainers</div>
-									<img src="./assets/img/coins/solana.svg" alt="btc">
-									<div class="items-coins__crypto-coin">Solana</div>
-									<div class="items-coins__value">
-										<div class="items-coins__price">189.63</div>
-										<span class="items-coins__currency">USD</span>
+								</a>
+							</div>
+							<div class="items-coins__item-wrap">
+								<a href="https://coinmarketcap.com/currencies/solana/" class="items-coins__item card-borders-item">
+									<div class="card-borders-inner"></div>
+									<div class="items-coins__content">
+										<div class="items-coins__category">Biggest gainers</div>
+										<img src="./assets/img/coins/solana.svg" alt="btc">
+										<div class="items-coins__crypto-coin">Solana</div>
+										<div class="items-coins__value">
+											<div class="items-coins__price">189.63</div>
+											<span class="items-coins__currency">USD</span>
+										</div>
 									</div>
-								</div>
-							</a>
-							<a href="https://coinmarketcap.com/currencies/chainlink" class="items-coins__item card-borders-item">
-								<div class="card-borders-inner"></div>
-								<div class="items-coins__content">
-									<div class="items-coins__category">Trending</div>
-									<img src="./assets/img/coins/chainlink.svg" alt="btc">
-									<div class="items-coins__crypto-coin">Chainlink</div>
-									<div class="items-coins__value">
-										<div class="items-coins__price">19.991</div>
-										<span class="items-coins__currency">USD</span>
+								</a>
+							</div>
+							<div class="items-coins__item-wrap">
+								<a href="https://coinmarketcap.com/currencies/chainlink" class="items-coins__item card-borders-item">
+									<div class="card-borders-inner"></div>
+									<div class="items-coins__content">
+										<div class="items-coins__category">Trending</div>
+										<img src="./assets/img/coins/chainlink.svg" alt="btc">
+										<div class="items-coins__crypto-coin">Chainlink</div>
+										<div class="items-coins__value">
+											<div class="items-coins__price">19.991</div>
+											<span class="items-coins__currency">USD</span>
+										</div>
 									</div>
-								</div>
-							</a>
+								</a>
+							</div>
 						</div>
 					</div>
 				</section>
 				<section data-fls-watcher="navigator" class="features">
-					<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".2" class="features__container">
+					<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".3" class="features__container">
 						<div data-fls-contentfeatures="" class="features__content content-features">
 							<div data-fls-blockhead="" class="content-features__header-block block-header">
 								<div class="block-header__label">
@@ -247,68 +253,70 @@
 							</ul>
 						</div>
 						<div class="features__statistic statistic-features">
-							<div class="statistic-features__wrap" data-fls-cardbg="">
-								<div data-fls-cardbg="" class="statistic-features__card card-borders-item">
-									<div class="card-borders-inner"></div>
-									<div class="statistic-features__body">
-										<h4 class="statistic-features__title">
-											Your portfolio is up
-											<mark>2.31%</mark>
-										</h4>
-										<ul class="statistic-features__items">
-											<li class="statistic-features__item">
-												<div class="statistic-features__coin">
-													<img src="./assets/img/coins/btc.svg" alt="btc">
-													<div class="statistic-features__coin-info">
-														<div class="statistic-features__coin-name">Bitcoin</div>
-														<div class="statistic-features__currency">BTC/USD</div>
+							<div class="statistic-features__wrapper">
+								<div class="statistic-features__wrap" data-fls-cardbg="">
+									<div data-fls-cardbg="" class="statistic-features__card card-borders-item">
+										<div class="card-borders-inner"></div>
+										<div class="statistic-features__body">
+											<h4 class="statistic-features__title">
+												Your portfolio is up
+												<mark>2.31%</mark>
+											</h4>
+											<ul class="statistic-features__items">
+												<li class="statistic-features__item">
+													<div class="statistic-features__coin">
+														<img src="./assets/img/coins/btc.svg" alt="btc">
+														<div class="statistic-features__coin-info">
+															<div class="statistic-features__coin-name">Bitcoin</div>
+															<div class="statistic-features__currency">BTC/USD</div>
+														</div>
 													</div>
-												</div>
-												<div class="statistic-features__price-change">
-													<mark>1.05%</mark>
-													<img src="./assets/img/features/arrow.svg" alt="arrow">
-												</div>
-											</li>
-											<li class="statistic-features__item">
-												<div class="statistic-features__coin">
-													<img src="./assets/img/coins/eth.svg" alt="btc">
-													<div class="statistic-features__coin-info">
-														<div class="statistic-features__coin-name">Ethereum</div>
-														<div class="statistic-features__currency">ETH/USD</div>
+													<div class="statistic-features__price-change">
+														<mark>1.05%</mark>
+														<img src="./assets/img/features/arrow.svg" alt="arrow">
 													</div>
-												</div>
-												<div class="statistic-features__price-change">
-													<mark>3.24%</mark>
-													<img src="./assets/img/features/arrow.svg" alt="arrow">
-												</div>
-											</li>
-											<li class="statistic-features__item">
-												<div class="statistic-features__coin">
-													<img src="./assets/img/coins/litecoin.svg" alt="btc">
-													<div class="statistic-features__coin-info">
-														<div class="statistic-features__coin-name">Litecoin</div>
-														<div class="statistic-features__currency">LTC/USD</div>
+												</li>
+												<li class="statistic-features__item">
+													<div class="statistic-features__coin">
+														<img src="./assets/img/coins/eth.svg" alt="btc">
+														<div class="statistic-features__coin-info">
+															<div class="statistic-features__coin-name">Ethereum</div>
+															<div class="statistic-features__currency">ETH/USD</div>
+														</div>
 													</div>
-												</div>
-												<div class="statistic-features__price-change">
-													<mark>1.31%</mark>
-													<img src="./assets/img/features/arrow.svg" alt="arrow">
-												</div>
-											</li>
-											<li class="statistic-features__item">
-												<div class="statistic-features__coin">
-													<img src="./assets/img/coins/polkadot.svg" alt="btc">
-													<div class="statistic-features__coin-info">
-														<div class="statistic-features__coin-name">Polkadot</div>
-														<div class="statistic-features__currency">DOT/USD</div>
+													<div class="statistic-features__price-change">
+														<mark>3.24%</mark>
+														<img src="./assets/img/features/arrow.svg" alt="arrow">
 													</div>
-												</div>
-												<div class="statistic-features__price-change">
-													<mark>2.05%</mark>
-													<img src="./assets/img/features/arrow.svg" alt="arrow">
-												</div>
-											</li>
-										</ul>
+												</li>
+												<li class="statistic-features__item">
+													<div class="statistic-features__coin">
+														<img src="./assets/img/coins/litecoin.svg" alt="btc">
+														<div class="statistic-features__coin-info">
+															<div class="statistic-features__coin-name">Litecoin</div>
+															<div class="statistic-features__currency">LTC/USD</div>
+														</div>
+													</div>
+													<div class="statistic-features__price-change">
+														<mark>1.31%</mark>
+														<img src="./assets/img/features/arrow.svg" alt="arrow">
+													</div>
+												</li>
+												<li class="statistic-features__item">
+													<div class="statistic-features__coin">
+														<img src="./assets/img/coins/polkadot.svg" alt="btc">
+														<div class="statistic-features__coin-info">
+															<div class="statistic-features__coin-name">Polkadot</div>
+															<div class="statistic-features__currency">DOT/USD</div>
+														</div>
+													</div>
+													<div class="statistic-features__price-change">
+														<mark>2.05%</mark>
+														<img src="./assets/img/features/arrow.svg" alt="arrow">
+													</div>
+												</li>
+											</ul>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -378,41 +386,49 @@
 					</div>
 				</section>
 				<section class="advantages">
-					<div class="advantages__container">
+					<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".8" class="advantages__container">
 						<div class="advantages__items" data-fls-cardbg="">
-							<div class="advantages__item card-borders-item">
-								<div class="card-borders-inner"></div>
-								<div class="advantages__body">
-									<div class="advantages__value">6M+</div>
-									<div class="advantages__label">Active users</div>
+							<div class="advantages__item-wrap">
+								<div class="advantages__item card-borders-item">
+									<div class="card-borders-inner"></div>
+									<div class="advantages__body">
+										<div class="advantages__value">6M+</div>
+										<div class="advantages__label">Active users</div>
+									</div>
 								</div>
 							</div>
-							<div class="advantages__item card-borders-item">
-								<div class="card-borders-inner"></div>
-								<div class="advantages__body">
-									<div class="advantages__value">24/7</div>
-									<div class="advantages__label">Users support</div>
+							<div class="advantages__item-wrap">
+								<div class="advantages__item card-borders-item">
+									<div class="card-borders-inner"></div>
+									<div class="advantages__body">
+										<div class="advantages__value">24/7</div>
+										<div class="advantages__label">Users support</div>
+									</div>
 								</div>
 							</div>
-							<div class="advantages__item card-borders-item">
-								<div class="card-borders-inner"></div>
-								<div class="advantages__body">
-									<div class="advantages__value">160+</div>
-									<div class="advantages__label">Countries</div>
+							<div class="advantages__item-wrap">
+								<div class="advantages__item card-borders-item">
+									<div class="card-borders-inner"></div>
+									<div class="advantages__body">
+										<div class="advantages__value">160+</div>
+										<div class="advantages__label">Countries</div>
+									</div>
 								</div>
 							</div>
-							<div class="advantages__item card-borders-item">
-								<div class="card-borders-inner"></div>
-								<div class="advantages__body">
-									<div class="advantages__value">$22B+</div>
-									<div class="advantages__label">Trade volume</div>
+							<div class="advantages__item-wrap">
+								<div class="advantages__item card-borders-item">
+									<div class="card-borders-inner"></div>
+									<div class="advantages__body">
+										<div class="advantages__value">$22B+</div>
+										<div class="advantages__label">Trade volume</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</section>
 				<section data-fls-watcher="navigator" class="best-solution">
-					<div class="best-solution__container">
+					<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".2" class="best-solution__container">
 						<div data-fls-blockhead="" class="best-solution__header-block block-header block-header--center">
 							<div class="block-header__label">
 								We deliver
@@ -421,7 +437,7 @@
 							<h2 class="block-header__title">One application with multiple options to give you freedom of buying & selling</h2>
 						</div>
 						<div class="best-solution__body">
-							<div class="best-solution__columns">
+							<div data-fls-parallax-parent="" class="best-solution__columns">
 								<div class="best-solution__column">
 									<div class="best-solution__item">
 										<div class="best-solution__content">
@@ -447,17 +463,17 @@
 									</div>
 								</div>
 								<div class="best-solution__column column-bg">
-									<div class="column-bg__mockup">
+									<div data-fls-parallax="" data-fls-parallax-coefficient="9" class="column-bg__mockup">
 										<img src="./assets/img/best-solution/mockup.svg" alt="iphone">
 									</div>
-									<div class="column-bg__btc">
+									<div data-fls-mouse="" data-fls-mouse-cx="135" data-fls-mouse-cy="150" class="column-bg__btc">
 										<picture>
-											<img alt="bitcoin" src="./assets/img/best-solution/btc.webp">
+											<img data-fls-parallax="" data-fls-parallax-coefficient="11" alt="bitcoin" src="./assets/img/best-solution/btc.webp">
 										</picture>
 									</div>
-									<div class="column-bg__eth">
+									<div data-fls-mouse="" data-fls-mouse-dxr="" data-fls-mouse-dyr="" data-fls-mouse-cx="135" data-fls-mouse-cy="150" class="column-bg__eth">
 										<picture>
-											<img alt="ethereum" src="./assets/img/best-solution/eth.webp">
+											<img data-fls-parallax="" data-fls-parallax-coefficient="15" alt="ethereum" src="./assets/img/best-solution/eth.webp">
 										</picture>
 									</div>
 									<div class="column-bg__rings">

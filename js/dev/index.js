@@ -665,105 +665,6 @@ function spollers() {
   }
 }
 window.addEventListener("load", spollers);
-let isLogoAnimationCompleted = false;
-let areImagesLoaded = false;
-function preloader() {
-  const preloaderImages = document.querySelectorAll("img");
-  const htmlDocument = document.documentElement;
-  const isPreloaded = localStorage.getItem(location.href) && document.querySelector('[data-fls-preloader="true"]');
-  let imagesLoadedCount = 0;
-  let counter = 0;
-  let progress = 0;
-  if (preloaderImages.length && !isPreloaded) {
-    let imageLoaded = function() {
-      imagesLoadedCount++;
-      progress = Math.round(100 / preloaderImages.length * imagesLoadedCount);
-      const intervalId = setInterval(() => {
-        if (counter >= progress) {
-          clearInterval(intervalId);
-        } else {
-          setValueProgress(++counter);
-        }
-      }, 10);
-      if (imagesLoadedCount === preloaderImages.length) {
-        areImagesLoaded = true;
-        startSecondAnimation();
-      }
-    }, setValueProgress = function(progress2) {
-      if (showPecentLoad) showPecentLoad.innerText = `${progress2}%`;
-      if (showLineLoad) showLineLoad.style.width = `${progress2}%`;
-    };
-    const preloaderTemplate = `
-		<div class="fls-preloader">
-			<div class="fls-preloader__body">
-				<div class="logo-intro">
-					<svg class="circle" viewBox="0 0 82 77" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M72.751 37.8762C71.501 77.3762 15.501 77.3762 14.251 37.8762" stroke="#D42727" stroke-width="18.5"/>
-						<path d="M14.2505 38.8762C15.501 -1.12382 72.001 -0.123816 72.7509 38.8762" stroke="#532222" stroke-width="18.5"/>
-					</svg>
-					<svg class="triangle" viewBox="0 0 82 77" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M34.3535 39.1396L11.4517 57.1587L11.4517 21.1204L34.3535 39.1396Z" fill="#99E39E"/>
-					</svg>
-					<svg class="triangle" viewBox="0 0 82 77" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M22.9019 39.1396L7.89213e-06 57.1587L9.53674e-06 21.1204L22.9019 39.1396Z" fill="#99E39E"/>
-					</svg>
-				</div>
-			</div>
-		</div>`;
-    document.body.insertAdjacentHTML("beforeend", preloaderTemplate);
-    document.querySelector(".fls-preloader");
-    const showPecentLoad = document.querySelector(".fls-preloader__counter");
-    const showLineLoad = document.querySelector(".fls-preloader__line span");
-    htmlDocument.setAttribute("data-fls-preloader-loading", "");
-    htmlDocument.setAttribute("data-fls-scrolllock", "");
-    preloaderImages.forEach((preloaderImage) => {
-      const imgClone = document.createElement("img");
-      imgClone.onload = imageLoaded;
-      imgClone.onerror = imageLoaded;
-      imgClone.src = preloaderImage.dataset.src || preloaderImage.src;
-    });
-    addLoadedClass();
-    const preloaderOnce = () => localStorage.setItem(location.href, "preloaded");
-    if (document.querySelector('[data-fls-preloader="true"]')) {
-      preloaderOnce();
-    }
-  } else {
-    areImagesLoaded = true;
-    addLoadedClass();
-  }
-  function addLoadedClass() {
-    const logo = document.querySelector(".logo-intro .circle");
-    if (!logo) return;
-    logo.addEventListener("animationend", function() {
-      if (!isLogoAnimationCompleted) {
-        isLogoAnimationCompleted = true;
-        startSecondAnimation();
-      }
-    }, { once: true });
-  }
-  function startSecondAnimation() {
-    if (isLogoAnimationCompleted && areImagesLoaded) {
-      htmlDocument.setAttribute("data-fls-preloader-loaded", "");
-      htmlDocument.removeAttribute("data-fls-preloader-loading");
-      setTimeout(() => {
-        htmlDocument.setAttribute("intro-hide", "");
-        const introCompleteEvent = new CustomEvent("introAnimationComplete", {
-          detail: {
-            message: "Intro animation completed, starting element animations"
-          }
-        });
-        document.dispatchEvent(introCompleteEvent);
-        htmlDocument.removeAttribute("data-fls-scrolllock");
-      }, 500);
-    } else {
-      console.log("Очікуємо:", {
-        isLogoAnimationCompleted,
-        areImagesLoaded
-      });
-    }
-  }
-}
-document.addEventListener("DOMContentLoaded", preloader);
 class Parallax {
   constructor(elements) {
     if (elements.length) {
@@ -845,6 +746,60 @@ Parallax.Each = class {
 if (document.querySelector("[data-fls-parallax-parent]")) {
   new Parallax(document.querySelectorAll("[data-fls-parallax-parent]"));
 }
+class MousePRLX {
+  constructor(props, data = null) {
+    let defaultConfig = {
+      init: true
+    };
+    this.config = Object.assign(defaultConfig, props);
+    if (this.config.init) {
+      const paralaxMouse = document.querySelectorAll("[data-fls-mouse]");
+      if (paralaxMouse.length) {
+        this.paralaxMouseInit(paralaxMouse);
+      }
+    }
+  }
+  paralaxMouseInit(paralaxMouse) {
+    paralaxMouse.forEach((el) => {
+      const paralaxMouseWrapper = el.closest("[data-fls-mouse-wrapper]");
+      const paramСoefficientX = +el.dataset.flsMouseCx || 100;
+      const paramСoefficientY = +el.dataset.flsMouseCy || 100;
+      const directionX = el.hasAttribute("data-fls-mouse-dxr") ? -1 : 1;
+      const directionY = el.hasAttribute("data-fls-mouse-dyr") ? -1 : 1;
+      const paramAnimation = el.dataset.prlxA ? +el.dataset.prlxA : 50;
+      let positionX = 0, positionY = 0;
+      let coordXprocent = 0, coordYprocent = 0;
+      setMouseParallaxStyle();
+      if (paralaxMouseWrapper) {
+        mouseMoveParalax(paralaxMouseWrapper);
+      } else {
+        mouseMoveParalax();
+      }
+      function setMouseParallaxStyle() {
+        const distX = coordXprocent - positionX;
+        const distY = coordYprocent - positionY;
+        positionX = positionX + distX * paramAnimation / 1e3;
+        positionY = positionY + distY * paramAnimation / 1e3;
+        el.style.cssText = `transform: translate3D(${directionX * positionX / (paramСoefficientX / 10)}%,${directionY * positionY / (paramСoefficientY / 10)}%,0) rotate(0.02deg);`;
+        requestAnimationFrame(setMouseParallaxStyle);
+      }
+      function mouseMoveParalax(wrapper = window) {
+        wrapper.addEventListener("mousemove", function(e) {
+          const offsetTop = el.getBoundingClientRect().top + window.scrollY;
+          if (offsetTop >= window.scrollY || offsetTop + el.offsetHeight >= window.scrollY) {
+            const parallaxWidth = window.innerWidth;
+            const parallaxHeight = window.innerHeight;
+            const coordX = e.clientX - parallaxWidth / 2;
+            const coordY = e.clientY - parallaxHeight / 2;
+            coordXprocent = coordX / parallaxWidth * 100;
+            coordYprocent = coordY / parallaxHeight * 100;
+          }
+        });
+      }
+    });
+  }
+}
+document.querySelector("[data-fls-mouse]") ? window.addEventListener("load", new MousePRLX({})) : null;
 const marquee = () => {
   const $marqueeArray = document.querySelectorAll("[data-fls-marquee]");
   const ATTR_NAMES = {
