@@ -1,17 +1,27 @@
 <!doctype html>
-<html intro-hide="" lang="en">
+<html data-loaded="" lang="en">
 	<head>
+		<style data-fls-preloader="false" rel="preload">
+			body > *:not(.fls-preloader) {
+   opacity: 0;visibility: hidden;
+}
+[intro-hide] body > *:not(.fls-preloader) {
+   transition: opacity 0.5s ease .5s; 
+   opacity: 1;
+   visibility: visible;
+}
+		</style>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="./assets/img/favicon.ico">
 		<title>Home Page</title>
-		<script type="module" crossorigin="" src="./js/index.min.js?v=1763845983591"></script>
-		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1763845983591">
-		<link rel="modulepreload" crossorigin="" href="./js/main.min.js?v=1763845983591">
-		<link rel="modulepreload" crossorigin="" href="./js/blockhead.min.js?v=1763845983591">
-		<link rel="stylesheet" crossorigin="" href="./css/main.min.css?v=1763845983591">
-		<link rel="stylesheet" crossorigin="" href="./css/blockhead.min.css?v=1763845983591">
-		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1763845983591">
+		<script type="module" crossorigin="" src="./js/index.min.js?v=1763940255061"></script>
+		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1763940255061">
+		<link rel="modulepreload" crossorigin="" href="./js/main.min.js?v=1763940255061">
+		<link rel="modulepreload" crossorigin="" href="./js/blockhead.min.js?v=1763940255061">
+		<link rel="stylesheet" crossorigin="" href="./css/main.min.css?v=1763940255061">
+		<link rel="stylesheet" crossorigin="" href="./css/blockhead.min.css?v=1763940255061">
+		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1763940255061">
 	</head>
 	<body>
 		<div data-fls-cursor-shadow="" class="wrapper">
@@ -19,12 +29,18 @@
 				<div class="header__container">
 					<a href="index.html" data-fls-logo="" class="header__logo logo">
 						<!-- <img src="@img/icons/logo.svg" alt="logo"> -->
-						<svg width="28" height="28" viewbox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M4.35303 5.76505C5.73064 4.06339 7.47722 2.66821 9.47229 1.67573C11.4674 0.683256 13.6635 0.1171 15.9091 0.0163173C18.1547 -0.0844656 20.3965 0.282523 22.4797 1.09197C24.5629 1.90142 26.438 3.13406 27.9757 4.70488L22.8436 9.31408C22.0019 8.45422 20.9754 7.77947 19.8351 7.33638C18.6947 6.89329 17.4676 6.6924 16.2384 6.74757C15.0091 6.80274 13.807 7.11265 12.7149 7.65593C11.6228 8.19921 10.6667 8.96293 9.91258 9.89442L4.35303 5.76505Z" fill="white"></path>
-							<path d="M28.0004 22.6611C26.5585 24.3131 24.7595 25.6459 22.7277 26.5675C20.6959 27.4891 18.4796 27.9776 16.2316 27.9992C13.9837 28.0209 11.7575 27.5753 9.70675 26.6931C7.65599 25.8109 5.82942 24.513 4.35303 22.8892L9.65846 18.4637C10.4666 19.3526 11.4665 20.063 12.5891 20.5459C13.7117 21.0289 14.9303 21.2728 16.1608 21.261C17.3914 21.2491 18.6046 20.9817 19.7168 20.4772C20.829 19.9727 21.8137 19.2432 22.603 18.3389L28.0004 22.6611Z" fill="white"></path>
-							<path d="M12.7827 14.2845L4.2611 20.9893L4.2611 7.57969L12.7827 14.2845Z" fill="#99E39E"></path>
-							<path d="M8.52173 14.2845L0.000111147 20.9893L0.000111759 7.57969L8.52173 14.2845Z" fill="#99E39E"></path>
-						</svg>
+						<div class="logo__icon">
+							<svg width="28" height="28" viewbox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M4.35303 5.76505C5.73064 4.06339 7.47722 2.66821 9.47229 1.67573C11.4674 0.683256 13.6635 0.1171 15.9091 0.0163173C18.1547 -0.0844656 20.3965 0.282523 22.4797 1.09197C24.5629 1.90142 26.438 3.13406 27.9757 4.70488L22.8436 9.31408C22.0019 8.45422 20.9754 7.77947 19.8351 7.33638C18.6947 6.89329 17.4676 6.6924 16.2384 6.74757C15.0091 6.80274 13.807 7.11265 12.7149 7.65593C11.6228 8.19921 10.6667 8.96293 9.91258 9.89442L4.35303 5.76505Z" fill="white"></path>
+								<path d="M28.0004 22.6611C26.5585 24.3131 24.7595 25.6459 22.7277 26.5675C20.6959 27.4891 18.4796 27.9776 16.2316 27.9992C13.9837 28.0209 11.7575 27.5753 9.70675 26.6931C7.65599 25.8109 5.82942 24.513 4.35303 22.8892L9.65846 18.4637C10.4666 19.3526 11.4665 20.063 12.5891 20.5459C13.7117 21.0289 14.9303 21.2728 16.1608 21.261C17.3914 21.2491 18.6046 20.9817 19.7168 20.4772C20.829 19.9727 21.8137 19.2432 22.603 18.3389L28.0004 22.6611Z" fill="white"></path>
+							</svg>
+							<svg viewbox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M12.7827 14.2845L4.2611 20.9893L4.2611 7.57969L12.7827 14.2845Z" fill="#99E39E"></path>
+							</svg>
+							<svg viewbox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M12.7827 14.2845L4.2611 20.9893L4.2611 7.57969L12.7827 14.2845Z" fill="#99E39E"></path>
+							</svg>
+						</div>
 						<span class="logo__company">
 							Cryp
 							<mark>go</mark>
@@ -59,7 +75,7 @@
 			</header>
 			<main class="page page--index">
 				<section class="page__hero hero">
-					<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".4" class="hero__container">
+					<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".3" class="hero__container">
 						<div class="hero__content">
 							<div class="hero__label">Future of crypto trading</div>
 							<div data-fls-blockhead="" class="hero__header-block block-header">
@@ -100,7 +116,7 @@
 					</div>
 				</section>
 				<section class="partenrs">
-					<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".5" class="partenrs__container">
+					<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".4" class="partenrs__container">
 						<div class="partenrs__label">
 							Trusted by top
 							<mark>crypto platforms</mark>
@@ -125,7 +141,7 @@
 					</div>
 				</section>
 				<section class="coins">
-					<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".6" class="coins__container">
+					<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".3" class="coins__container">
 						<div data-fls-blockhead="" class="coins__header-block block-header block-header--center">
 							<div class="block-header__label">
 								Featured
@@ -386,7 +402,7 @@
 					</div>
 				</section>
 				<section class="advantages">
-					<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".8" class="advantages__container">
+					<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".2" class="advantages__container">
 						<div class="advantages__items" data-fls-cardbg="">
 							<div class="advantages__item-wrap">
 								<div class="advantages__item card-borders-item">
@@ -463,17 +479,17 @@
 									</div>
 								</div>
 								<div class="best-solution__column column-bg">
-									<div data-fls-parallax="" data-fls-parallax-coefficient="9" class="column-bg__mockup">
+									<div data-fls-parallax="" data-fls-parallax-coefficient="12" class="column-bg__mockup">
 										<img src="./assets/img/best-solution/mockup.svg" alt="iphone">
 									</div>
 									<div data-fls-mouse="" data-fls-mouse-cx="135" data-fls-mouse-cy="150" class="column-bg__btc">
 										<picture>
-											<img data-fls-parallax="" data-fls-parallax-coefficient="11" alt="bitcoin" src="./assets/img/best-solution/btc.webp">
+											<img data-fls-parallax="" data-fls-parallax-coefficient="14" alt="bitcoin" src="./assets/img/best-solution/btc.webp">
 										</picture>
 									</div>
 									<div data-fls-mouse="" data-fls-mouse-dxr="" data-fls-mouse-dyr="" data-fls-mouse-cx="135" data-fls-mouse-cy="150" class="column-bg__eth">
 										<picture>
-											<img data-fls-parallax="" data-fls-parallax-coefficient="15" alt="ethereum" src="./assets/img/best-solution/eth.webp">
+											<img data-fls-parallax="" data-fls-parallax-coefficient="18" alt="ethereum" src="./assets/img/best-solution/eth.webp">
 										</picture>
 									</div>
 									<div class="column-bg__rings">
@@ -511,11 +527,11 @@
 					</div>
 				</section>
 				<section class="powered">
-					<div class="powered__container">
+					<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".4" class="powered__container">
 						<div class="powered__body">
 							<div data-fls-blockhead="" class="powered__header-block block-header">
-								<h2 class="powered__header-block block-header__title">Crypgo powered by framer platform</h2>
-								<div class="powered__header-block block-header__text">
+								<h2 class="block-header__title">Crypgo powered by framer platform</h2>
+								<div class="block-header__text">
 									<p>
 										Our landing page empower framer developers to have free, safer and more trustworthy experiences
 									</p>
@@ -529,45 +545,74 @@
 								</svg>
 							</button>
 							<div class="powered__decor">
-								<svg viewbox="0 0 592 592" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<g opacity="0.05">
-										<path d="M120.749 186.056C138.874 155.384 163.668 128.767 193.421 108.041C223.174 87.315 257.178 72.973 293.087 66.0045C328.996 59.036 365.956 59.6068 401.418 67.6774C436.88 75.748 469.999 91.1265 498.492 112.752L426.851 199.167C411.254 187.329 393.124 178.911 373.713 174.493C354.301 170.075 334.069 169.763 314.412 173.577C294.756 177.392 276.142 185.243 259.855 196.588C243.568 207.933 229.996 222.504 220.074 239.294L120.749 186.056Z" fill="white"></path>
-										<path d="M541.638 401.744C522.359 431.771 496.574 457.508 466.061 477.18C435.548 496.853 401.033 509.992 364.898 515.693C328.762 521.394 291.866 519.52 256.753 510.201C221.641 500.881 189.148 484.338 161.516 461.713L236.385 377.843C251.51 390.228 269.297 399.284 288.518 404.385C307.738 409.487 327.935 410.512 347.716 407.392C367.496 404.271 386.389 397.079 403.092 386.31C419.795 375.541 433.91 361.453 444.463 345.016L541.638 401.744Z" fill="white"></path>
-										<path d="M276.731 303.13L155.516 431.348L123.592 215.486L276.731 303.13Z" fill="white"></path>
-										<path d="M208.138 313.274L86.9228 441.492L54.9987 225.63L208.138 313.274Z" fill="white"></path>
-									</g>
-								</svg>
+								<!--
+<div class="powered__decor-icon">
+<svg viewBox="0 0 592 592" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M120.749 186.056C138.874 155.384 163.668 128.767 193.421 108.041C223.174 87.315 257.178 72.973 293.087 66.0045C328.996 59.036 365.956 59.6068 401.418 67.6774C436.88 75.748 469.999 91.1265 498.492 112.752L426.851 199.167C411.254 187.329 393.124 178.911 373.713 174.493C354.301 170.075 334.069 169.763 314.412 173.577C294.756 177.392 276.142 185.243 259.855 196.588C243.568 207.933 229.996 222.504 220.074 239.294L120.749 186.056Z" fill="white"/>
+<path d="M541.638 401.744C522.359 431.771 496.574 457.508 466.061 477.18C435.548 496.853 401.033 509.992 364.898 515.693C328.762 521.394 291.866 519.52 256.753 510.201C221.641 500.881 189.148 484.338 161.516 461.713L236.385 377.843C251.51 390.228 269.297 399.284 288.518 404.385C307.738 409.487 327.935 410.512 347.716 407.392C367.496 404.271 386.389 397.079 403.092 386.31C419.795 375.541 433.91 361.453 444.463 345.016L541.638 401.744Z" fill="white"/>
+</svg>
+<svg viewBox="0 0 592 592" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M276.731 303.13L155.516 431.348L123.592 215.486L276.731 303.13Z" fill="white"/>
+<path d="M208.138 313.274L86.9228 441.492L54.9987 225.63L208.138 313.274Z" fill="white"/>
+</svg>
+</div>
+-->
+								<!--
+<div class="powered__decor-icon">
+<svg viewBox="0 0 521 521" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M103.375 126.358C125.792 98.6673 154.214 75.964 186.679 59.8138C219.144 43.6635 254.88 34.4507 291.422 32.8107C327.965 31.1707 364.444 37.1426 398.343 50.3144C432.243 63.4862 462.756 83.5446 487.778 109.106L404.265 184.11C390.568 170.118 373.865 159.138 355.309 151.927C336.752 144.717 316.784 141.448 296.78 142.346C276.777 143.244 257.215 148.287 239.444 157.127C221.672 165.968 206.115 178.396 193.843 193.553L103.375 126.358Z" fill="white"/>
+<path d="M488.18 401.301C464.716 428.184 435.443 449.871 402.38 464.868C369.317 479.865 333.252 487.814 296.671 488.167C260.09 488.52 223.865 481.268 190.494 466.912C157.123 452.556 127.4 431.437 103.375 405.012L189.708 332.998C202.859 347.463 219.13 359.023 237.397 366.882C255.665 374.74 275.494 378.71 295.518 378.517C315.543 378.324 335.285 373.973 353.383 365.763C371.482 357.554 387.506 345.682 400.35 330.967L488.18 401.301Z" fill="white"/>
+</svg>
+<svg viewBox="0 0 521 521" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M240.551 264.992L101.882 374.096L101.882 155.887L240.551 264.992Z" fill="white"/>
+<path d="M171.212 264.992L32.5427 374.096L32.5427 155.887L171.212 264.992Z" fill="white"/>
+</svg>
+</div>
+-->
+								<div data-fls-logoanimintro="" class="logo-anim-intro">
+									<svg class="circle" viewbox="0 0 82 77" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M72.751 37.8762C71.501 77.3762 15.501 77.3762 14.251 37.8762" stroke="white" stroke-width="18.5"></path>
+										<path d="M14.2505 38.8762C15.501 -1.12382 72.001 -0.123816 72.7509 38.8762" stroke="white" stroke-width="18.5"></path>
+									</svg>
+									<svg class="triangle" viewbox="0 0 82 77" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M34.3535 39.1396L11.4517 57.1587L11.4517 21.1204L34.3535 39.1396Z" fill="white"></path>
+									</svg>
+									<svg class="triangle" viewbox="0 0 82 77" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M22.9019 39.1396L7.89213e-06 57.1587L9.53674e-06 21.1204L22.9019 39.1396Z" fill="white"></path>
+									</svg>
+								</div>
 							</div>
 						</div>
 					</div>
 				</section>
 				<section data-fls-watcher="navigator" class="portfolio">
-					<div class="portfolio__container">
-						<div class="portfolio__assets assets-portfolio">
-							<div class="assets-portfolio__column">
-								<a href="https://coinmarketcap.com/currencies/ethereum/" target="_blank" title="view coin" class="assets-portfolio__card card-assets">
-									<div class="card-assets__coin card-assets__coin-eth">
-										<img src="./assets/img/coins/eth.svg" alt="eth">
-									</div>
-									<div class="card-assets__content-wrap" data-fls-cardbg="">
-										<div class="card-assets__body card-borders-item">
-											<div class="card-borders-inner"></div>
-											<div class="card-assets__content">
-												<h4 class="card-assets__title">Ethereum</h4>
-												<span class="card-assets__coin-symbol">ETH</span>
-												<span class="card-assets__coin-currency">USD</span>
-												<div class="card-assets__stars">******</div>
-												<div class="card-assets__percent">5.23% (***)</div>
-											</div>
+					<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".4" class="portfolio__container">
+						<div data-fls-parallax-parent="" class="portfolio__assets assets-portfolio">
+							<div data-fls-parallax="" data-fls-parallax-coefficient="23" class="assets-portfolio__column-wrap">
+								<div class="assets-portfolio__column">
+									<a href="https://coinmarketcap.com/currencies/ethereum/" target="_blank" title="view coin" class="assets-portfolio__card card-assets">
+										<div class="card-assets__coin card-assets__coin-eth">
+											<img src="./assets/img/coins/eth.svg" alt="eth">
 										</div>
-										<button type="button" aria-label="Arrow" class="card-assets__button">
-											<svg viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<path d="M17.6408 10.5845H3.52832" stroke-width="1.58766" stroke-linecap="round" stroke-linejoin="round"></path>
-												<path d="M13.2308 14.9946C13.2308 14.9946 17.6409 11.7466 17.6409 10.5845C17.6409 9.42231 13.2307 6.17432 13.2307 6.17432" stroke-width="1.58766" stroke-linecap="round" stroke-linejoin="round"></path>
-											</svg>
-										</button>
-									</div>
-									<!--
+										<div class="card-assets__content-wrap" data-fls-cardbg="">
+											<div class="card-assets__body card-borders-item">
+												<div class="card-borders-inner"></div>
+												<div class="card-assets__content">
+													<h4 class="card-assets__title">Ethereum</h4>
+													<span class="card-assets__coin-symbol">ETH</span>
+													<span class="card-assets__coin-currency">USD</span>
+													<div class="card-assets__stars">******</div>
+													<div class="card-assets__percent">5.23% (***)</div>
+												</div>
+											</div>
+											<button type="button" aria-label="Arrow" class="card-assets__button">
+												<svg viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M17.6408 10.5845H3.52832" stroke-width="1.58766" stroke-linecap="round" stroke-linejoin="round"></path>
+													<path d="M13.2308 14.9946C13.2308 14.9946 17.6409 11.7466 17.6409 10.5845C17.6409 9.42231 13.2307 6.17432 13.2307 6.17432" stroke-width="1.58766" stroke-linecap="round" stroke-linejoin="round"></path>
+												</svg>
+											</button>
+										</div>
+										<!--
 <div class="card-assets__content-wrap" data-fls-cardbg>
 <div class="card-assets__body card-borders-item">
 <div class="card-borders-inner"></div>
@@ -587,50 +632,53 @@
 </svg>
 </button>
 -->
-								</a>
-								<a href="https://coinmarketcap.com/currencies/polkadot/" target="_blank" title="view coin" class="assets-portfolio__coin assets-portfolio__coin--polkadot">
-									<img src="./assets/img/coins/polkadot.svg" alt="polkadot">
-								</a>
-								<picture>
-									<img class="assets-portfolio-glow glow-pink" alt="pink glow" src="./assets/img/portfolio/pink-glow.webp">
-								</picture>
+									</a>
+									<a href="https://coinmarketcap.com/currencies/polkadot/" target="_blank" title="view coin" class="assets-portfolio__coin assets-portfolio__coin--polkadot">
+										<img src="./assets/img/coins/polkadot.svg" alt="polkadot">
+									</a>
+									<picture>
+										<img class="assets-portfolio-glow glow-pink" alt="pink glow" src="./assets/img/portfolio/pink-glow.webp">
+									</picture>
+								</div>
 							</div>
-							<div class="assets-portfolio__column">
-								<a href="https://coinmarketcap.com/currencies/ethereum/" target="_blank" title="view coin" class="assets-portfolio__card card-assets">
-									<div class="card-assets__coin card-assets__coin-btc">
-										<img src="./assets/img/coins/btc.svg" alt="bitcoin">
-									</div>
-									<div class="card-assets__content-wrap" data-fls-cardbg="">
-										<div class="card-assets__body card-borders-item">
-											<div class="card-borders-inner"></div>
-											<div class="card-assets__content">
-												<h4 class="card-assets__title">Bitcoin</h4>
-												<span class="card-assets__coin-symbol">BTC</span>
-												<span class="card-assets__coin-currency">USD</span>
-												<div class="card-assets__stars">******</div>
-												<div class="card-assets__percent">7.68% (***)</div>
+							<div data-fls-parallax="" data-fls-parallax-coefficient="-23" class="assets-portfolio__column-wrap">
+								<div class="assets-portfolio__column">
+									<a href="https://coinmarketcap.com/currencies/ethereum/" target="_blank" title="view coin" class="assets-portfolio__card card-assets">
+										<div class="card-assets__coin card-assets__coin-btc">
+											<img src="./assets/img/coins/btc.svg" alt="bitcoin">
+										</div>
+										<div class="card-assets__content-wrap" data-fls-cardbg="">
+											<div class="card-assets__body card-borders-item">
+												<div class="card-borders-inner"></div>
+												<div class="card-assets__content">
+													<h4 class="card-assets__title">Bitcoin</h4>
+													<span class="card-assets__coin-symbol">BTC</span>
+													<span class="card-assets__coin-currency">USD</span>
+													<div class="card-assets__stars">******</div>
+													<div class="card-assets__percent">7.68% (***)</div>
+												</div>
 											</div>
 										</div>
-									</div>
-									<button type="button" aria-label="Arrow" class="card-assets__button">
-										<svg viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M17.6408 10.5845H3.52832" stroke-width="1.58766" stroke-linecap="round" stroke-linejoin="round"></path>
-											<path d="M13.2308 14.9946C13.2308 14.9946 17.6409 11.7466 17.6409 10.5845C17.6409 9.42231 13.2307 6.17432 13.2307 6.17432" stroke-width="1.58766" stroke-linecap="round" stroke-linejoin="round"></path>
-										</svg>
-									</button>
-								</a>
-								<a href="https://coinmarketcap.com/currencies/avalanche/" target="_blank" title="view coin" class="assets-portfolio__coin assets-portfolio__coin--avax">
-									<img src="./assets/img/portfolio/avalanche.svg" alt="avalanche">
-								</a>
-								<picture>
-									<img class="assets-portfolio-glow glow-red" alt="red glow" src="./assets/img/portfolio/red-glow.webp">
-								</picture>
+										<button type="button" aria-label="Arrow" class="card-assets__button">
+											<svg viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M17.6408 10.5845H3.52832" stroke-width="1.58766" stroke-linecap="round" stroke-linejoin="round"></path>
+												<path d="M13.2308 14.9946C13.2308 14.9946 17.6409 11.7466 17.6409 10.5845C17.6409 9.42231 13.2307 6.17432 13.2307 6.17432" stroke-width="1.58766" stroke-linecap="round" stroke-linejoin="round"></path>
+											</svg>
+										</button>
+									</a>
+									<a href="https://coinmarketcap.com/currencies/avalanche/" target="_blank" title="view coin" class="assets-portfolio__coin assets-portfolio__coin--avax">
+										<img src="./assets/img/portfolio/avalanche.svg" alt="avalanche">
+									</a>
+									<picture>
+										<img class="assets-portfolio-glow glow-red" alt="red glow" src="./assets/img/portfolio/red-glow.webp">
+									</picture>
+								</div>
 							</div>
 							<picture>
-								<img class="assets-portfolio__decor decor-1" alt="decor" src="./assets/img/portfolio/decor.webp">
+								<img data-fls-mouse="" data-fls-mouse-cx="400" data-fls-mouse-cy="400" data-fls-mouse-a="10" class="assets-portfolio__decor decor-1" alt="decor" src="./assets/img/portfolio/decor.webp">
 							</picture>
 							<picture>
-								<img class="assets-portfolio__decor decor-2" alt="decor" src="./assets/img/portfolio/decor.webp">
+								<img data-fls-mouse="" data-fls-mouse-dxr="" data-fls-mouse-dyr="" data-fls-mouse-cx="400" data-fls-mouse-cy="400" data-fls-mouse-a="10" class="assets-portfolio__decor decor-2" alt="decor" src="./assets/img/portfolio/decor.webp">
 							</picture>
 						</div>
 						<div data-fls-contentfeatures="" class="portfolio__content content-features">
@@ -670,7 +718,7 @@
 					</div>
 				</section>
 				<section data-fls-watcher="navigator" class="upgrade">
-					<div class="upgrade__container">
+					<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".4" class="upgrade__container">
 						<div class="upgrade__content">
 							<div data-fls-blockhead="" class="upgrade__block-header block-header">
 								<div class="block-header__label">
@@ -720,15 +768,24 @@
 							</ul>
 						</div>
 						<div class="upgrade__charts-wrapper">
-							<div class="upgrade__charts" data-fls-cardbg="">
-								<div class="upgrade__percentage-chart-wrapper percentage-chart-upgrade">
+							<div data-fls-parallax-parent="" class="upgrade__charts" data-fls-cardbg="">
+								<div data-fls-parallax="" data-fls-parallax-coefficient="-23" class="upgrade__percentage-chart-wrapper percentage-chart-upgrade">
 									<div class="percentage-chart-upgrade__chart card-borders-item">
 										<div class="card-borders-inner"></div>
 										<div class="percentage-chart-upgrade__content">
 											<div class="percentage-chart-upgrade__head">
 												<img src="./assets/img/coins/btc.svg" class="percentage-chart-upgrade__coin-icon" alt="bitcoin icon">
+												<!--
+<button type="button" class="percentage-chart-upgrade__options" aria-label="options">
+<span></span>
+</button>
+-->
 												<button type="button" class="percentage-chart-upgrade__options" aria-label="options">
-													<span></span>
+													<svg width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path d="M11.25 3.75C11.25 3.05964 10.6903 2.5 10 2.5C9.30967 2.5 8.75 3.05964 8.75 3.75C8.75 4.44036 9.30967 5 10 5C10.6903 5 11.25 4.44036 11.25 3.75Z" fill="white" stroke="white" stroke-width="0.833333"></path>
+														<path d="M11.25 10C11.25 9.30967 10.6903 8.75 10 8.75C9.30967 8.75 8.75 9.30967 8.75 10C8.75 10.6903 9.30967 11.25 10 11.25C10.6903 11.25 11.25 10.6903 11.25 10Z" fill="white" stroke="white" stroke-width="0.833333"></path>
+														<path d="M11.25 16.25C11.25 15.5597 10.6903 15 10 15C9.30967 15 8.75 15.5597 8.75 16.25C8.75 16.9403 9.30967 17.5 10 17.5C10.6903 17.5 11.25 16.9403 11.25 16.25Z" fill="white" stroke="white" stroke-width="0.833333"></path>
+													</svg>
 												</button>
 											</div>
 											<div class="percentage-chart-upgrade__body">
@@ -778,7 +835,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="upgrade__montly-sales-chart-wrapper montly-sales-chart-upgrade">
+								<div data-fls-parallax="" data-fls-parallax-coefficient="23" class="upgrade__montly-sales-chart-wrapper montly-sales-chart-upgrade">
 									<div class="montly-sales-chart-upgrade__montly-sales-chart card-borders-item">
 										<div class="card-borders-inner"></div>
 										<div class="montly-sales-chart-upgrade__content">
@@ -821,7 +878,7 @@
 					</div>
 				</section>
 				<section class="first-to-use">
-					<div class="first-to-use__container">
+					<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".4" class="first-to-use__container">
 						<div data-fls-blockhead="" class="first-to-use__block-header block-header block-header--center">
 							<div class="block-header__label">
 								Always by
@@ -884,7 +941,7 @@
 					</div>
 				</section>
 				<section data-fls-watcher="navigator" class="questions">
-					<div class="questions__container">
+					<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".3" class="questions__container">
 						<div data-fls-blockhead="" class="questions__block-header block-header block-header--center">
 							<div class="block-header__label">
 								Popular
@@ -949,16 +1006,22 @@
 				</section>
 			</main>
 			<footer data-fls-footer="" class="footer">
-				<div class="footer__container">
+				<div data-fls-watcher="" data-fls-watcher-once="" data-fls-watcher-threshold=".4" class="footer__container">
 					<div class="footer__content">
 						<div class="footer__column">
 							<a href="index.html" data-fls-logo="" class="footer__logo logo">
-								<svg width="28" height="28" viewbox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M4.35303 5.76505C5.73064 4.06339 7.47722 2.66821 9.47229 1.67573C11.4674 0.683256 13.6635 0.1171 15.9091 0.0163173C18.1547 -0.0844656 20.3965 0.282523 22.4797 1.09197C24.5629 1.90142 26.438 3.13406 27.9757 4.70488L22.8436 9.31408C22.0019 8.45422 20.9754 7.77947 19.8351 7.33638C18.6947 6.89329 17.4676 6.6924 16.2384 6.74757C15.0091 6.80274 13.807 7.11265 12.7149 7.65593C11.6228 8.19921 10.6667 8.96293 9.91258 9.89442L4.35303 5.76505Z" fill="white"></path>
-									<path d="M28.0004 22.6611C26.5585 24.3131 24.7595 25.6459 22.7277 26.5675C20.6959 27.4891 18.4796 27.9776 16.2316 27.9992C13.9837 28.0209 11.7575 27.5753 9.70675 26.6931C7.65599 25.8109 5.82942 24.513 4.35303 22.8892L9.65846 18.4637C10.4666 19.3526 11.4665 20.063 12.5891 20.5459C13.7117 21.0289 14.9303 21.2728 16.1608 21.261C17.3914 21.2491 18.6046 20.9817 19.7168 20.4772C20.829 19.9727 21.8137 19.2432 22.603 18.3389L28.0004 22.6611Z" fill="white"></path>
-									<path d="M12.7827 14.2845L4.2611 20.9893L4.2611 7.57969L12.7827 14.2845Z" fill="#99E39E"></path>
-									<path d="M8.52173 14.2845L0.000111147 20.9893L0.000111759 7.57969L8.52173 14.2845Z" fill="#99E39E"></path>
-								</svg>
+								<div class="logo__icon">
+									<svg width="28" height="28" viewbox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M4.35303 5.76505C5.73064 4.06339 7.47722 2.66821 9.47229 1.67573C11.4674 0.683256 13.6635 0.1171 15.9091 0.0163173C18.1547 -0.0844656 20.3965 0.282523 22.4797 1.09197C24.5629 1.90142 26.438 3.13406 27.9757 4.70488L22.8436 9.31408C22.0019 8.45422 20.9754 7.77947 19.8351 7.33638C18.6947 6.89329 17.4676 6.6924 16.2384 6.74757C15.0091 6.80274 13.807 7.11265 12.7149 7.65593C11.6228 8.19921 10.6667 8.96293 9.91258 9.89442L4.35303 5.76505Z" fill="white"></path>
+										<path d="M28.0004 22.6611C26.5585 24.3131 24.7595 25.6459 22.7277 26.5675C20.6959 27.4891 18.4796 27.9776 16.2316 27.9992C13.9837 28.0209 11.7575 27.5753 9.70675 26.6931C7.65599 25.8109 5.82942 24.513 4.35303 22.8892L9.65846 18.4637C10.4666 19.3526 11.4665 20.063 12.5891 20.5459C13.7117 21.0289 14.9303 21.2728 16.1608 21.261C17.3914 21.2491 18.6046 20.9817 19.7168 20.4772C20.829 19.9727 21.8137 19.2432 22.603 18.3389L28.0004 22.6611Z" fill="white"></path>
+									</svg>
+									<svg viewbox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M12.7827 14.2845L4.2611 20.9893L4.2611 7.57969L12.7827 14.2845Z" fill="#99E39E"></path>
+									</svg>
+									<svg viewbox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M12.7827 14.2845L4.2611 20.9893L4.2611 7.57969L12.7827 14.2845Z" fill="#99E39E"></path>
+									</svg>
+								</div>
 								<span class="logo__company">
 									Cryp
 									<mark>go</mark>
@@ -985,19 +1048,19 @@
 							<h5 class="footer__title">Links</h5>
 							<ul class="footer__list">
 								<li class="footer__item">
-									<a href="#">Features</a>
+									<a href="index.html#best-solution">Features</a>
 								</li>
 								<li class="footer__item">
-									<a href="#">Benefits</a>
+									<a href="404.html">Benefits</a>
 								</li>
 								<li class="footer__item">
-									<a href="#">Services</a>
+									<a href="404.html">Services</a>
 								</li>
 								<li class="footer__item">
-									<a href="#">Why Crypgo</a>
+									<a href="index.html#features">Why Crypgo</a>
 								</li>
 								<li class="footer__item">
-									<a href="#">FAQs</a>
+									<a href="index.html#questions">FAQs</a>
 								</li>
 							</ul>
 						</div>
