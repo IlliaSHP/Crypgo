@@ -15,13 +15,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="./assets/img/favicon.ico">
 		<title>Home Page</title>
-		<script type="module" crossorigin="" src="./js/index.min.js?v=1763984536857"></script>
-		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1763984536857">
-		<link rel="modulepreload" crossorigin="" href="./js/main.min.js?v=1763984536857">
-		<link rel="modulepreload" crossorigin="" href="./js/blockhead.min.js?v=1763984536857">
-		<link rel="stylesheet" crossorigin="" href="./css/main.min.css?v=1763984536857">
-		<link rel="stylesheet" crossorigin="" href="./css/blockhead.min.css?v=1763984536857">
-		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1763984536857">
+		<script type="module" crossorigin="" src="./js/index.min.js?v=1763987145477"></script>
+		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1763987145477">
+		<link rel="modulepreload" crossorigin="" href="./js/main.min.js?v=1763987145477">
+		<link rel="modulepreload" crossorigin="" href="./js/blockhead.min.js?v=1763987145477">
+		<link rel="stylesheet" crossorigin="" href="./css/main.min.css?v=1763987145477">
+		<link rel="stylesheet" crossorigin="" href="./css/blockhead.min.css?v=1763987145477">
+		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1763987145477">
 	</head>
 	<body>
 		<div data-fls-cursor-shadow="" class="wrapper">
@@ -85,7 +85,7 @@
 									</p>
 								</div>
 							</div>
-							<button data-fls-button="" class="hero__button button button--arrow-r">
+							<button type="button" data-fls-button="" data-fls-scrollto=".features" data-fls-scrollto-header="" class="hero__button button button--arrow-r" aria-label="Explore more">
 								<span>Explore more</span>
 								<svg viewbox="0 0 15 10" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M14.0833 4.91675H0.75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -150,7 +150,7 @@
 						</div>
 						<div class="coins__items items-coins" data-fls-cardbg="">
 							<div class="items-coins__item-wrap">
-								<a href="https://coinmarketcap.com/currencies/bitcoin/" class="items-coins__item card-borders-item">
+								<a href="https://coinmarketcap.com/currencies/bitcoin/" class="items-coins__item card-borders-item" target="_blank" title="View coin">
 									<div class="card-borders-inner"></div>
 									<div class="items-coins__content">
 										<div class="items-coins__category">Highest volume</div>
@@ -164,7 +164,7 @@
 								</a>
 							</div>
 							<div class="items-coins__item-wrap">
-								<a href="https://coinmarketcap.com/currencies/ethereum" class="items-coins__item card-borders-item">
+								<a href="https://coinmarketcap.com/currencies/ethereum" class="items-coins__item card-borders-item" target="_blank" title="View coin">
 									<div class="card-borders-inner"></div>
 									<div class="items-coins__content">
 										<div class="items-coins__category">Top gainer</div>
@@ -178,7 +178,7 @@
 								</a>
 							</div>
 							<div class="items-coins__item-wrap">
-								<a href="https://coinmarketcap.com/currencies/litecoin" class="items-coins__item card-borders-item">
+								<a href="https://coinmarketcap.com/currencies/litecoin" class="items-coins__item card-borders-item" target="_blank" title="View coin">
 									<div class="card-borders-inner"></div>
 									<div class="items-coins__content">
 										<div class="items-coins__category">New listing</div>
@@ -192,7 +192,7 @@
 								</a>
 							</div>
 							<div class="items-coins__item-wrap">
-								<a href="https://coinmarketcap.com/currencies/polkadot" class="items-coins__item card-borders-item">
+								<a href="https://coinmarketcap.com/currencies/polkadot" class="items-coins__item card-borders-item" target="_blank" title="View coin">
 									<div class="card-borders-inner"></div>
 									<div class="items-coins__content">
 										<div class="items-coins__category">Most traded</div>
@@ -206,7 +206,7 @@
 								</a>
 							</div>
 							<div class="items-coins__item-wrap">
-								<a href="https://coinmarketcap.com/currencies/solana/" class="items-coins__item card-borders-item">
+								<a href="https://coinmarketcap.com/currencies/solana/" class="items-coins__item card-borders-item" target="_blank" title="View coin">
 									<div class="card-borders-inner"></div>
 									<div class="items-coins__content">
 										<div class="items-coins__category">Biggest gainers</div>
@@ -220,7 +220,7 @@
 								</a>
 							</div>
 							<div class="items-coins__item-wrap">
-								<a href="https://coinmarketcap.com/currencies/chainlink" class="items-coins__item card-borders-item">
+								<a href="https://coinmarketcap.com/currencies/chainlink" class="items-coins__item card-borders-item" target="_blank" title="View coin">
 									<div class="card-borders-inner"></div>
 									<div class="items-coins__content">
 										<div class="items-coins__category">Trending</div>
@@ -536,13 +536,13 @@
 									</p>
 								</div>
 							</div>
-							<button data-fls-button="" class="powered__button button button--arrow-r">
-								<span>Explore more</span>
+							<a href="#" data-fls-button="" class="powered__button button button--arrow-r">
+								<span>Get template</span>
 								<svg viewbox="0 0 15 10" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M14.0833 4.91675H0.75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
 									<path d="M9.91683 9.08339C9.91683 9.08339 14.0834 6.01473 14.0834 4.91673C14.0834 3.81873 9.91675 0.750061 9.91675 0.750061" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
 								</svg>
-							</button>
+							</a>
 							<div class="powered__decor">
 								<!--
 <div class="powered__decor-icon">
