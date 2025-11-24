@@ -1928,6 +1928,7 @@
 .partenrs__item img {
   max-width: 11.875rem;
 }
+
 .coins__header-block {
   margin-bottom: 0;
 }
@@ -2157,7 +2158,6 @@
 .advantages__label {
   color: rgba(255, 255, 255, 0.8);
 }
-
 .best-solution__body {
   position: relative;
 }
@@ -2602,9 +2602,6 @@
   stroke: #000510;
 }
 
-.upgrade {
-  padding-bottom: 15rem;
-}
 .upgrade__container {
   display: grid;
   align-items: center;
@@ -2880,6 +2877,9 @@
   background: #99e39e;
 }
 
+.first-to-use {
+  padding-top: 15rem;
+}
 .first-to-use__items-wrap {
   position: relative;
   overflow: hidden;
@@ -2983,7 +2983,6 @@
 .items-first-to-use__bg svg path:nth-of-type(3) {
   opacity: 1;
 }
-
 [intro-hide] .questions .questions__spollers .spollers__item:nth-child(1) {
   animation-delay: 0.9s;
 }
@@ -3072,9 +3071,6 @@
   .portfolio .content-features__item:not(:last-child) {
     padding-bottom: 0.9375rem;
   }
-  .upgrade {
-    padding-bottom: 13.75rem;
-  }
   .list-upgrade {
     column-gap: 1.875rem;
   }
@@ -3086,6 +3082,9 @@
   }
   .volume-chart-24h-upgrade {
     padding: 1.5625rem;
+  }
+  .first-to-use {
+    padding-top: 13.75rem;
   }
 }
 @media (width <= 47.99875em){
@@ -3279,9 +3278,6 @@
   .card-assets__stars {
     font-size: 1.5rem;
   }
-  .upgrade {
-    padding-bottom: 4.5rem;
-  }
   .upgrade__container {
     row-gap: 2.1875rem;
   }
@@ -3349,6 +3345,9 @@
   .volume-chart-24h-upgrade__title, .volume-chart-24h-upgrade__amount {
     font-size: 0.875rem;
   }
+  .first-to-use {
+    padding-top: 4.5rem;
+  }
   .items-first-to-use .items-first-to-use__icon {
     margin-bottom: 0.9375rem;
   }
@@ -3396,14 +3395,11 @@
   .partenrs__label {
     margin-bottom: 1.25rem;
   }
-  .coins {
-    padding-bottom: 2.625rem;
-  }
   .items-coins {
     padding-block: 1.875rem;
   }
   .features {
-    padding-bottom: 1.375rem;
+    padding-top: 2.625rem;
   }
   .statistic-features__card {
     width: 18.125rem;
@@ -3418,10 +3414,13 @@
     width: 31.25rem;
   }
   .advantages {
-    padding-bottom: 1.375rem;
+    padding-top: 1.375rem;
   }
   .advantages__item {
     padding: 2.5rem;
+  }
+  .best-solution {
+    padding-top: 1.375rem;
   }
   .powered__body {
     padding-block: 1.875rem;
@@ -3437,6 +3436,9 @@
   }
   .items-first-to-use__items {
     padding-bottom: 1.875rem;
+  }
+  .questions {
+    padding-bottom: 4.5rem;
   }
 }
 @media (min-width: 47.99875em) and (width <= 47.99875em){
@@ -3498,23 +3500,26 @@
   .partenrs__label {
     margin-bottom: clamp( 1.25rem , 0.8104395604375rem  +  2.1978021978vw , 2.5rem );
   }
-  .coins {
-    padding-bottom: clamp( 2.625rem , 1.2623626373625rem  +  6.8131868132vw , 6.5rem );
-  }
   .items-coins {
     padding-block: clamp( 1.875rem , 1.65521978021875rem  +  1.0989010989vw , 2.5rem );
   }
   .features {
-    padding-bottom: clamp( 1.375rem , -0.251373626375rem  +  8.1318681319vw , 6rem );
+    padding-top: clamp( 2.625rem , 1.2623626373625rem  +  6.8131868132vw , 6.5rem );
   }
   .advantages {
-    padding-bottom: clamp( 1.375rem , -0.251373626375rem  +  8.1318681319vw , 6rem );
+    padding-top: clamp( 1.375rem , -0.251373626375rem  +  8.1318681319vw , 6rem );
+  }
+  .best-solution {
+    padding-top: clamp( 1.375rem , -0.251373626375rem  +  8.1318681319vw , 6rem );
   }
   .powered__body {
     padding-block: clamp( 1.875rem , 1.12774725275rem  +  3.7362637363vw , 4rem );
   }
   .powered__body {
     padding-inline: clamp( 0.9375rem , -0.49107142856875rem  +  7.1428571429vw , 5rem );
+  }
+  .questions {
+    padding-bottom: clamp( 4.5rem , 2.91758241758125rem  +  7.9120879121vw , 9rem );
   }
 }
 @media (width > 20em) and (width <= 47.99875em){
@@ -3838,17 +3843,17 @@
   .partenrs__label {
     margin-bottom: 2.5rem;
   }
-  .coins {
-    padding-bottom: 6.5rem;
-  }
   .items-coins {
     padding-block: 2.5rem;
   }
   .features {
-    padding-bottom: 6rem;
+    padding-top: 6.5rem;
   }
   .advantages {
-    padding-bottom: 6rem;
+    padding-top: 6rem;
+  }
+  .best-solution {
+    padding-top: 6rem;
   }
   .powered__body {
     padding-block: 4rem;
@@ -3870,6 +3875,9 @@
   }
   .items-first-to-use__item {
     max-width: 15rem;
+  }
+  .questions {
+    padding-bottom: 9rem;
   }
 }
 @media (any-hover: hover){

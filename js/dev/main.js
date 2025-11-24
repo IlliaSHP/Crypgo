@@ -62,7 +62,7 @@ function headerLinkAnim() {
       if (isFirstAppearance) {
         span.style.transition = "opacity 0.8s ease, width 0.8s ease";
       } else {
-        span.style.transition = "all 0.8s ease";
+        span.style.transition = "all 1s ease";
       }
     }
     header.addEventListener("mouseover", function(event) {
