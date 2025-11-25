@@ -1065,6 +1065,7 @@ mark {
 .footer__icon img {
   width: 1.5rem;
   aspect-ratio: 1;
+  transition: scale 0.4s;
 }
 .footer__title {
   font-weight: 500;
@@ -2118,6 +2119,9 @@ a[data-fls-magnate] {
   }
 }
 @media (hover: hover) and (pointer: fine){
+  .footer__icon:hover img {
+    scale: 1.1;
+  }
   .footer__item a:hover {
     color: #99E39E;
     text-decoration-color: #99e39e;
@@ -2149,6 +2153,9 @@ a[data-fls-magnate] {
   }
 }
 @media (hover: none){
+  .footer__icon:active img {
+    scale: 1.1;
+  }
   .footer__item a:active {
     color: #99E39E;
     text-decoration-color: #99e39e;
