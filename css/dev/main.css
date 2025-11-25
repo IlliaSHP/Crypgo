@@ -989,13 +989,12 @@ mark {
 }
 .footer__content {
   display: flex;
-  justify-content: space-between;
 }
 .footer__content {
   row-gap: 1.875rem;
 }
 .footer__column {
-  flex: 0 0 auto;
+  flex: 1 0 auto;
   justify-items: start;
 }
 .footer__column:first-child {
@@ -1137,6 +1136,7 @@ mark {
 
 .app-footer {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   flex-direction: column;
   justify-self: start;
@@ -2042,6 +2042,11 @@ a[data-fls-magnate] {
   }
   .bottom-footer {
     padding-bottom: clamp( 1.25rem , 0.078173828125rem  +  3.90625vw , 2.5rem );
+  }
+}
+@media (min-width: 29.99875em){
+  .footer__content {
+    justify-content: space-between;
   }
 }
 @media (width > 47.99875em) and (width <= 76.875em){

@@ -2898,6 +2898,7 @@
   flex-wrap: wrap;
   row-gap: 1.875rem;
   padding-inline: 1.875rem;
+  padding-top: 5rem;
 }
 .items-first-to-use__items {
   justify-content: center;
@@ -3157,6 +3158,9 @@
   }
   .percentage-chart-upgrade__percent svg {
     width: 5.3125rem;
+  }
+  .items-first-to-use__items {
+    padding-top: 1.875rem;
   }
 }
 @media (max-width: 47.99875em) and (min-width: 29.99875em){
@@ -3432,9 +3436,6 @@
     padding-inline: 0.625rem;
   }
   .items-first-to-use__items {
-    padding-top: 2.5rem;
-  }
-  .items-first-to-use__items {
     padding-bottom: 1.875rem;
   }
   .questions {
@@ -3464,6 +3465,9 @@
 @media (max-width: 47.99875em) and (width > 47.99875em){
   .column-bg__btc, .column-bg__eth {
     max-width: 10rem;
+  }
+  .items-first-to-use__items {
+    padding-top: 3.125rem;
   }
   .items-first-to-use__items {
     column-gap: 3.125rem;
@@ -3530,10 +3534,7 @@
     padding: clamp( 2.5rem , 2.18748604848125rem  +  1.5625697576vw , 2.9375rem );
   }
   .items-first-to-use__items {
-    padding-top: clamp( 2.5rem , 0.7142059913375rem  +  8.9289700433vw , 5rem );
-  }
-  .items-first-to-use__items {
-    padding-bottom: clamp( 1.875rem , 0.7588787445875rem  +  5.5806062771vw , 3.4375rem );
+    padding-bottom: clamp( 1.875rem , 0.98210299566875rem  +  4.4644850217vw , 3.125rem );
   }
 }
 @media (width > 20em) and (width <= 37.5em){
@@ -3686,10 +3687,7 @@
     padding: 2.9375rem;
   }
   .items-first-to-use__items {
-    padding-top: 5rem;
-  }
-  .items-first-to-use__items {
-    padding-bottom: 3.4375rem;
+    padding-bottom: 3.125rem;
   }
 }
 @media (min-width: 47.99875em) and (width > 75em){
@@ -3762,6 +3760,9 @@
 @media (max-width: 47.99875em) and (width > 20em) and (width <= 47.99875em){
   .column-bg__btc, .column-bg__eth {
     max-width: clamp( 7.8125rem , 6.24993024241875rem  +  7.8128487879vw , 10rem );
+  }
+  .items-first-to-use__items {
+    padding-top: clamp( 1.875rem , 0.98210299566875rem  +  4.4644850217vw , 3.125rem );
   }
 }
 @media (max-width: 47.99875em) and (width > 20em) and (width <= 34.375em){
