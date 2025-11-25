@@ -1706,6 +1706,7 @@ a[data-fls-magnate] {
   font-size: 1.625rem;
   font-weight: 600;
   transition: color 0.3s;
+  display: flex;
 }
 .logo__company mark {
   color: #99E39E;
