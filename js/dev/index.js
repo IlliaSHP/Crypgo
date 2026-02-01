@@ -758,11 +758,6 @@ function preloader() {
           htmlDocument.removeAttribute("data-fls-scrolllock");
         }, 600);
       }, 500);
-    } else {
-      console.log("Очікуємо:", {
-        isLogoAnimationCompleted,
-        areImagesLoaded
-      });
     }
   }
 }
@@ -1108,7 +1103,7 @@ const circles = decorElement?.querySelectorAll(".decor-circle");
 let currentLineIndex = 0;
 let isAnimating = false;
 let animationTimeout = null;
-function log$1(message, data = null) {
+function log(message, data = null) {
   const timestamp = (/* @__PURE__ */ new Date()).toLocaleTimeString();
   console.log(`[${timestamp}] 🎬 ANIMATION: ${message}`, data ? data : "");
 }
@@ -1166,7 +1161,7 @@ function initializeAnimationObserver() {
           animateLine(currentLineIndex);
         }, initialDelay);
       } else {
-        log$1("---");
+        log("---");
       }
     }
   });
@@ -1302,19 +1297,9 @@ const animationConfig = [
 let animationTimeouts = /* @__PURE__ */ new Map();
 let animatedElements = /* @__PURE__ */ new WeakSet();
 let watcherElementsWithClass = /* @__PURE__ */ new WeakSet();
-function log(message, data = null) {
-  const timestamp = (/* @__PURE__ */ new Date()).toLocaleTimeString();
-  console.log(`[${timestamp}] 🎬 ANIMATION: ${message}`, data ? data : "");
-}
 function runAnimationCycle(element, config, isFirstRun = false) {
   const { animationName, animationDuration: animationDuration2, timingFunction, fillMode } = config;
   element.style.animation = `${animationName} ${animationDuration2}s ${timingFunction} ${fillMode}`;
-  log(`Animation cycle started`, {
-    element: element.className,
-    animation: animationName,
-    duration: animationDuration2,
-    isFirstRun
-  });
   const timeout = setTimeout(() => {
     scheduleNextCycle(element, config);
   }, animationDuration2 * 1e3);
@@ -1327,7 +1312,6 @@ function scheduleNextCycle(element, config) {
   const { delayBetweenAnimations } = config;
   element.style.animation = "none";
   void element.offsetWidth;
-  log(`Scheduling next cycle in ${delayBetweenAnimations}s`);
   const timeout = setTimeout(() => {
     runAnimationCycle(element, config, false);
   }, delayBetweenAnimations * 1e3);
@@ -1338,9 +1322,6 @@ function scheduleNextCycle(element, config) {
 }
 function startAnimation(element, config) {
   const { initialDelay: initialDelay2 } = config;
-  log(`Scheduling initial animation in ${initialDelay2}s`, {
-    element: element.className
-  });
   const timeout = setTimeout(() => {
     runAnimationCycle(element, config, true);
   }, initialDelay2 * 1e3);
@@ -1357,13 +1338,9 @@ function handleWatcherCallback(e) {
   }
   if (targetElement.classList.contains("--watcher-view")) {
     if (watcherElementsWithClass.has(targetElement)) {
-      log(`Element already has --watcher-view class, skipping animation start`);
       return;
     }
     watcherElementsWithClass.add(targetElement);
-    log(`Element received --watcher-view class, starting animations`, {
-      element: targetElement.className
-    });
     animationConfig.forEach((config) => {
       const animatedElement = targetElement.querySelector(config.selector);
       if (animatedElement && !animatedElements.has(animatedElement)) {
@@ -1373,7 +1350,6 @@ function handleWatcherCallback(e) {
     });
   } else {
     if (watcherElementsWithClass.has(targetElement)) {
-      log(`Element lost --watcher-view class, clearing animation timeouts`);
       watcherElementsWithClass.delete(targetElement);
       animationConfig.forEach((config) => {
         const animatedElement = targetElement.querySelector(config.selector);
@@ -1388,7 +1364,6 @@ function handleWatcherCallback(e) {
   }
 }
 function startAnimationsOnIntroComplete() {
-  log(`Intro animation completed event received`);
   animationConfig.forEach((config) => {
     const elements = document.querySelectorAll(`[data-fls-animationdecorline] ${config.selector}`);
     elements.forEach((animatedElement) => {
@@ -1397,9 +1372,6 @@ function startAnimationsOnIntroComplete() {
         if (!animatedElements.has(animatedElement)) {
           animatedElements.add(animatedElement);
           watcherElementsWithClass.add(parentContainer);
-          log(`Element already in viewport, starting animation`, {
-            element: animatedElement.className
-          });
           startAnimation(animatedElement, config);
         }
       }
@@ -1408,11 +1380,9 @@ function startAnimationsOnIntroComplete() {
 }
 function initializeAnimations() {
   document.addEventListener("introAnimationComplete", function(e) {
-    log(`introAnimationComplete event detected`, e.detail);
     startAnimationsOnIntroComplete();
   });
   document.addEventListener("watcherCallback", handleWatcherCallback);
-  log("Animations initialized, waiting for introAnimationComplete and watcherCallback events");
 }
 document.addEventListener("DOMContentLoaded", () => {
   initializeAnimations();
